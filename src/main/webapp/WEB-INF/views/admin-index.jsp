@@ -26,6 +26,7 @@
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <link href="/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
         <link href="/global/plugins/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+        <link href="/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN 全局主题样式 -->
         <link href="/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -1171,15 +1172,19 @@
         <script src="/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.min.js" type="text/javascript"></script>
         <script src="/global/plugins/ladda/spin.min.js" type="text/javascript"></script>
         <script src="/global/plugins/ladda/ladda.min.js" type="text/javascript"></script>
+        <script src="/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="/global/scripts/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
+        
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="/pages/scripts/components-editors.js" type="text/javascript"></script>
         <script src="/pages/scripts/ui-buttons.js" type="text/javascript"></script>
+        <script src="/pages/scripts/ui-toastr.js" type="text/javascript"></script>
         <!-- <script src="/pages/scripts/components-bootstrap-switch.js" type="text/javascript"></script> -->
         <!-- END PAGE LEVEL SCRIPTS -->
+        
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
         <script src="/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>

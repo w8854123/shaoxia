@@ -24,8 +24,8 @@ function login(){
 		data:$("#loginForm").serialize(),
 		dataType:"html",
 		success:function(data,textStatus){
-			console.info(data);
-			console.info(textStatus);
+//			console.info(data);
+//			console.info(textStatus);
 //			console.info(xhr);
 			if(textStatus == 'success'){
 				window.location.href = "/admin/admin-index.html";
