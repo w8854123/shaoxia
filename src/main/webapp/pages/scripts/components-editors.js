@@ -13,8 +13,9 @@ var ComponentsEditors = function () {
 //    }
 
     var handleSummernote = function () {
-        $('#summernote_1').summernote({height: 500,lang: 'zh-CN'});
-        $('#summernote_2').summernote({height: 200,lang: 'zh-CN'});
+//        $("#contentBody [name='summernote']").summernote({height: 500,lang: 'zh-CN'});
+        $('#content').summernote({height: 500,lang: 'zh-CN'});
+        $('#abstr').summernote({height: 200,lang: 'zh-CN'});
         //API:
         //var sHTML = $('#summernote_1').code(); // get code
         //$('#summernote_1').destroy(); // destroy
