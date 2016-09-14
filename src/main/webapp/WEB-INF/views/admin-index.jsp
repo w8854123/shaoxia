@@ -1186,5 +1186,6 @@
         <script src="/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
         <script src="/js/admin-index/admin-index.js" type="text/javascript"></script>
+        <script src="/js/admin-article/article.js" type="text/javascript"></script>
     </body>
 </html>
