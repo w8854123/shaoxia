@@ -1,3 +1,7 @@
+var buttons={
+		draftButton:null,
+		publishButton:null
+}
 /**
  * 初始化组件
  */
@@ -7,11 +11,19 @@ var initOption={
 				ComponentsEditors.init();
 			}
 			if(initOpt.uiButtons){	//初始化UI按钮
-				UIButtons.init();
+//				UIButtons.init();
+				buttons.draftButton=Ladda.create( document.querySelector( '.draft' ) );
+				buttons.publishButton=Ladda.create( document.querySelector( '.publish' ) );
+				
 			}
 			if(initOpt.bootstrapSwitch){	//初始化Bootstrap开关
 //				ComponentsBootstrapSwitch.init();//初始化Bootstrap开关
 				$(".replyCheckbox").bootstrapSwitch();
+			}
+			if(initOpt.dataTables){  //初始化jquery dataTables
+				if (App.isAngularJsApp() === false) {
+					TableDatatablesManaged.init();
+				}
 			}
 		}
 }
@@ -28,13 +40,16 @@ var newArti={
  * 文章列表 初始化组件
  */
 var articleMana={
+		dataTables:true
 }
 
 /**
  * 加载contentBody
  * @param menu 菜单
  */
-function loadContentBody(menu){
+function loadContentBody(menu,obj){
+	$(".sub-menu li").removeClass("active open");	//清空所有的选中
+	$(obj).parent('li').addClass("active open");    //添加选中样式
 	
 	$("#contentBody").empty();//清理界面
 	var url="/admin/articleEdit.html"; 
@@ -48,7 +63,7 @@ function loadContentBody(menu){
 		initOpt=newArti;
 	}
 	if(menu=="articleManage"){ //文章列表
-		url="/admin/articleEdit.html";
+		url="/admin/articleManage.html";
 		data="文章列表";
 		initOpt=articleMana;
 	}

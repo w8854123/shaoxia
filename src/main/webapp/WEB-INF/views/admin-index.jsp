@@ -27,6 +27,8 @@
         <link href="/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
         <link href="/global/plugins/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
         <link href="/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+        <link href="/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+        <link href="/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN 全局主题样式 -->
         <link href="/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -485,20 +487,20 @@
                             <li class="heading">
                                 <h3 class="uppercase">—————————————</h3>
                             </li>
-                            <li class="nav-item  ">
+                            <li class="nav-item">
                                 <a href="javascript:;" class="nav-link nav-toggle">
                                     <i class="icon-docs"></i>
                                     <span class="title">文章管理</span>
                                     <span class="arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    <li class="nav-item  ">
-                                        <a href="javascript:void(0);" onclick="loadContentBody('newArticle')" class="nav-link ">
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0);" onclick="loadContentBody('newArticle',this)" class="nav-link ">
                                             <span class="title">发布文章</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item  ">
-                                        <a href="javascript:void(0);" onclick="loadContentBody('articleManage')" class="nav-link ">
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0);" onclick="loadContentBody('articleManage',this)" class="nav-link ">
                                             <span class="title">文章列表</span>
                                         </a>
                                     </li>
@@ -1173,6 +1175,9 @@
         <script src="/global/plugins/ladda/spin.min.js" type="text/javascript"></script>
         <script src="/global/plugins/ladda/ladda.min.js" type="text/javascript"></script>
         <script src="/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+        <script src="/global/scripts/datatable.js" type="text/javascript"></script>
+        <script src="/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+        <script src="/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="/global/scripts/app.min.js" type="text/javascript"></script>
@@ -1180,9 +1185,10 @@
         
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="/pages/scripts/components-editors.js" type="text/javascript"></script>
-        <script src="/pages/scripts/ui-buttons.js" type="text/javascript"></script>
+        <!-- <script src="/pages/scripts/ui-buttons.js" type="text/javascript"></script> -->
         <script src="/pages/scripts/ui-toastr.js" type="text/javascript"></script>
         <!-- <script src="/pages/scripts/components-bootstrap-switch.js" type="text/javascript"></script> -->
+        <script src="/pages/scripts/table-datatables-managed.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         
         <!-- BEGIN THEME LAYOUT SCRIPTS -->

@@ -1,4 +1,8 @@
 function saveArticle(publish){
+	//按钮加载动画
+	buttons.draftButton.start();
+	buttons.publishButton.start();
+	
 	var title=$("#articleTitle").val().trim(); //文章标题
 	var tags=$("#articleTags").val().trim();  //文章标签
 	var content=$("#content").summernote('code');   //文章正文
@@ -6,6 +10,12 @@ function saveArticle(publish){
 	var allowComment=$("#allowComment:checked").val(); //允许评论
 	if(!allowComment){
 		allowComment=1;
+	}
+	if(!title || title==""){
+		buttons.draftButton.stop();
+		buttons.publishButton.stop();
+		toastr["warning"]("标题不能为空！", "请填写标题");
+		return;
 	}
 	var article={
 		articleTitle:title,
@@ -27,9 +37,13 @@ function send(data){
 		data : data,
 		dataType : "text",
 		success : function(src,textStatus) {
-			toastr["success"]("保存草稿箱成功！", data.articleTitle); //通知插件toastr配置信息在ui-toastr
+			buttons.draftButton.stop();
+			buttons.publishButton.stop();
+			toastr["success"]("保存草稿箱成功！", data.articleTitle); //通知插件toastr配置信息在ui-toastr.js
 		},
 		error : function(XMLHttpRequest) {
+			buttons.draftButton.stop();
+			buttons.publishButton.stop();
 			if(XMLHttpRequest.status==400){
 				toastr["error"]("保存草稿箱失败！400错误", data.articleTitle);
 			}else if(XMLHttpRequest.status==500){
