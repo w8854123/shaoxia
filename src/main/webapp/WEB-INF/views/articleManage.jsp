@@ -41,9 +41,10 @@
 		<table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
 			<thead>
 				<tr>
-					<th><label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"
+					<!-- <th><label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"
 							class="group-checkable" data-set="#sample_1 .checkboxes" /> <span></span>
-					</label></th>
+					</label></th> -->
+					<th>#</th>
 					<th>标题</th>
 					<th>作者</th>
 					<th>状态</th>
@@ -52,14 +53,16 @@
 					<th>点赞</th>
 					<th>创建日期</th>
 					<th>操作</th>
+					<th>id</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="odd gradeX">
+				<!-- <tr class="odd gradeX">
 					<td><label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"
 							class="checkboxes" value="1" /> <span></span>
 					</label></td>
-					<td>不shuxer</td>
+					<td></td>
+					<td>不shuxer<input style="display: none;" value="1"></td>
 					<td><a href="mailto:shuxer@gmail.com"> shuxer@gmail.com </a></td>
 					<td><span class="label label-sm label-success"> 允许评论 </span></td>
 					<td class="center">0</td>
@@ -72,16 +75,16 @@
 								操作 <i class="fa fa-angle-down"></i>
 							</button>
 							<ul class="dropdown-menu pull-right" role="menu">
-								<li><a href="javascript:;"> <i class="icon-docs"></i> 更新
+								<li><a href="javascript:;"> <i class="icon-note"></i> 更 新
 								</a></li>
-								<li><a href="javascript:;"> <i class="icon-tag"></i> 置顶
+								<li><a href="javascript:;"> <i class="icon-like"></i> 置 顶
 								</a></li>
-								<li><a href="javascript:;"> <i class="icon-user"></i> 预览
+								<li><a href="javascript:;"> <i class="icon-eye"></i> 预 览
+								</a></li>
+								<li><a href="javascript:;"> <i class="icon-bubbles"></i> 评 论 <span class="badge badge-success">4</span>
 								</a></li>
 								<li class="divider"></li>
-								<li><a href="javascript:;"> <i class="icon-flag"></i> 评论 <span class="badge badge-success">4</span>
-								</a></li>
-								<li><a href="javascript:;"> <i class="icon-user"></i> 删除
+								<li><a href="javascript:;"> <i class="icon-trash"></i> 删 除
 								</a></li>
 							</ul>
 						</div>
@@ -91,7 +94,8 @@
 					<td><label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"
 							class="checkboxes" value="1" /> <span></span>
 					</label></td>
-					<td>啊looper</td>
+					<td></td>
+					<td>啊looper<input style="display: none;" value="2"></td>
 					<td><a href="mailto:looper90@gmail.com"> looper90@gmail.com </a></td>
 					<td><span class="label label-sm label-warning"> 草稿箱 </span></td>
 					<td class="center">0</td>
@@ -121,7 +125,8 @@
 					<td><label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"
 							class="checkboxes" value="1" /> <span></span>
 					</label></td>
-					<td>可以嘛打实大苏打阿斯顿阿斯顿阿斯顿阿斯顿阿斯顿揉揉绕测试这是什么结尾啦</td>
+					<td></td>
+					<td>可以嘛打实大苏打阿斯顿阿斯顿阿斯顿阿斯顿阿斯顿揉揉绕测试这是什么结尾啦<input style="display: none;" value="3"></td>
 					<td><a href="mailto:userwow@gmail.com"> userwow@gmail.com </a></td>
 					<td><span class="label label-sm label-danger"> 禁止评论 </span></td>
 					<td class="center">12345</td>
@@ -151,7 +156,8 @@
 					<td><label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"
 							class="checkboxes" value="1" /> <span></span>
 					</label></td>
-					<td>foopl</td>
+					<td></td>
+					<td>foopl<input style="display: none;" value="4"></td>
 					<td><a href="mailto:userwow@gmail.com"> good@gmail.com </a></td>
 					<td><span class="label label-sm label-info"> 已发布 </span></td>
 					<td class="center">0</td>
@@ -176,7 +182,7 @@
 							</ul>
 						</div>
 					</td>
-				</tr>
+				</tr> -->
 			</tbody>
 		</table>
 	</div>
