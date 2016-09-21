@@ -56,7 +56,7 @@ function loadContentBody(menu,obj){
 	var data="";
 	var initOpt={
 			
-	}
+	};
 	if(menu=="newArticle"){ //发布新文章
 		url="/admin/articleEdit.html";
 		data="发布文章";

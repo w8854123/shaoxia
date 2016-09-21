@@ -1188,7 +1188,7 @@
         <!-- <script src="/pages/scripts/ui-buttons.js" type="text/javascript"></script> -->
         <script src="/pages/scripts/ui-toastr.js" type="text/javascript"></script>
         <!-- <script src="/pages/scripts/components-bootstrap-switch.js" type="text/javascript"></script> -->
-        <script src="/pages/scripts/table-datatables-managed.js" type="text/javascript"></script>
+        <!-- <script src="/pages/scripts/table-datatables-managed.js" type="text/javascript"></script> -->
         <!-- END PAGE LEVEL SCRIPTS -->
         
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
@@ -1198,5 +1198,7 @@
         <!-- END THEME LAYOUT SCRIPTS -->
         <script src="/js/admin-index/admin-index.js" type="text/javascript"></script>
         <script src="/js/admin-article/article.js" type="text/javascript"></script>
+        <script src="/js/admin-article/article-datatables.js" type="text/javascript"></script>
+        
     </body>
 </html>

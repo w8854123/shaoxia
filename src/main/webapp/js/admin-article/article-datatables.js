@@ -1,11 +1,11 @@
 var TableDatatablesManaged = function () {
 
-    var initTable1 = function () {
+    var articleTables = function () {
 
 //        var table = $('#articleTables');
 
         // begin first table
-        var table = $('#articleTables').DataTable({
+    	var table = $('#articleTables').DataTable({
 
             // Internationalisation. For more info refer to http://datatables.net/manual/i18n
             "language": {
@@ -29,7 +29,7 @@ var TableDatatablesManaged = function () {
                 }
             },
             
-            "processing": true, //开启加载提示
+            "processing": false, //开启加载提示
             "serverSide": true, //开启服务器模式
             
             // Or you can use remote translation file
@@ -45,6 +45,7 @@ var TableDatatablesManaged = function () {
             "bStateSave": false, // save datatable state(pagination, sort, etc) in cookie.
             
             "searching": true,//是否允许Datatables开启本地搜索
+            "searchDelay":800,//设置搜索延迟时间单位ms
             
             "lengthMenu": [
                 [5, 15, 20, 25],
@@ -98,6 +99,11 @@ var TableDatatablesManaged = function () {
             ], // set first column as a default sort by asc
             
             ajax : function(data, callback, settings){ //data:发送给服务器的数据;callback:必须被执行，Datatables才能获取到数据;settings:Datatables的设置对象
+            	//设置进度条
+            	App.blockUI({
+                    target: '#blockui_articleTables',
+                    animate: true
+                });
             	//封装输入参数
             	var dtParam=getQueryParam(data);
             	
@@ -108,8 +114,10 @@ var TableDatatablesManaged = function () {
             		dataType : "json",
             		success : function(dtResult,textStatus) {
             			callback(dtResult);
+            			App.unblockUI('#blockui_articleTables');//关闭进度条
             		},
             		error : function(XMLHttpRequest) {
+            			App.unblockUI('#blockui_articleTables');//关闭进度条
             			if(XMLHttpRequest.status==500){
             				toastr["error"]("查询文章出错!500错误");
             			}
@@ -123,28 +131,96 @@ var TableDatatablesManaged = function () {
             	//dataIndex:Datatables内部存储的数据索引
             	$(row).addClass("gradeX");
             	var $tds=$('td', row);
-            	var actionHtml="<div class='btn-group'><button class='btn btn-xs green dropdown-toggle' type='button' data-toggle='dropdown' aria-expanded='false'> 操作 <i class='fa fa-angle-down'></i></button><ul class='dropdown-menu pull-right' role='menu'>" +
-            			"<li><a href='javascript:;'><i class='icon-note'></i> 更 新 </a></li>" +
-            			"<li><a href='javascript:;'><i class='icon-like'></i> 置 顶 </a></li>" +
-            			"<li><a href='javascript:;'><i class='icon-eye'></i> 预 览 </a></li>" +
-            			"<li><a href='javascript:;'><i class='icon-bubbles'></i> 评 论 <span class='badge badge-success'>4</span></a></li><li class='divider'></li>" +
-            			"<li><a href='javascript:;'><i class='icon-trash'></i> 删 除 </a></li></ul></div>";
-            	$tds.eq(8).html(actionHtml);
+            	var actionInfo = {// 操作选项信息
+            			id:data.articleId,
+            			
+            			updateInfo : " 编辑文章",
+            			updateClass : "icon-note",
+            			updateUrl : "",
+            			updateType : "GET",
+
+            			putTopInfo : " 置顶文章",
+            			putTopClass : "icon-arrow-up",
+            			putTopUrl : "/admin/article/update/",
+            			putTopValue : {
+            				putTop : 1
+            			},
+            			putTopType : "PATCH",
+
+            			publishInfo : " 取消发布",
+            			publishClass : "icon-ban",
+            			publishUrl : "/admin/article/update/",
+            			publishValue : {
+            				publish : 1
+            			},
+            			publishType : "PATCH",
+
+            			commentTypeInfo : " 禁止评论",
+            			commentTypeClass : "icon-lock",
+            			commentTypeUrl : "/admin/article/update/",
+            			commentTypeValue : {
+            				commentType : 1
+            			},
+            			commentType : "PATCH",
+
+            			previewInfo : " 预览文章",
+            			previewClass : "icon-eye",
+            			previewUrl : "",
+            			previewType : "GET",
+
+            			viewCommentsInfo : " 查看评论",
+            			viewCommentsClass : "icon-bubbles",
+            			viewCommentsUrl : "",
+            			viewCommentsType : "GET",
+
+            			deleteInfo : " 删 除 ",
+            			deleteClass : "icon-trash",
+            			deleteUrl : "/admin/article/delete/",
+            			deleteType : "DELETE"
+
+            		}
+            	
             	//设置状态
             	var stateHtml="";
-            	if(data.putTop==1){
-            		stateHtml +='<span class="label label-sm label-success">置顶</span>';
-            	}
             	if(data.publish==1){
             		stateHtml +='<span class="label label-sm label-warning">草稿</span>';
+            		actionInfo.publishInfo=" 发布文章";
+            		actionInfo.publishClass="icon-feed";
+            		actionInfo.publishValue={publish:0};
+            	}else{
+            		stateHtml='<span class="label label-sm label-info">在线</span>';
+            	}
+            	if(data.putTop==1){
+            		stateHtml +='<span class="label label-sm label-success">置顶</span>';
+            		actionInfo.putTopInfo=" 取消置顶";
+            		actionInfo.putTopClass="icon-arrow-down";
+            		actionInfo.putTopValue={putTop:0};
             	}
             	if(data.commentType==1){
             		stateHtml +='<span class="label label-sm label-danger">禁评</span>';
+            		actionInfo.commentTypeInfo=" 允许评论";
+            		actionInfo.commentTypeClass="icon-lock-open";
+            		actionInfo.commentTypeValue={commentType:0};
             	}
 //            	if(stateHtml==""){
-//            		stateHtml='<span class="label label-sm label-info">正常</span>';
+//            		stateHtml='<span class="label label-sm label-info">已发布</span>';
 //            	}
             	$tds.eq(3).html(stateHtml);
+            	//设置操作
+            	var actionHtml="<div class='btn-group'><button class='btn btn-xs green dropdown-toggle' type='button' data-toggle='dropdown' aria-expanded='false'> 操作 <i class='fa fa-angle-down'></i></button><ul class='dropdown-menu pull-right' role='menu'>" +
+            			"<li><a href='javascript:;' ><i class='"+actionInfo.updateClass+"'></i>"+actionInfo.updateInfo+"</a></li>" +
+            			"<li><a href='javascript:;' ><i class='"+actionInfo.putTopClass+"'></i>"+actionInfo.putTopInfo+"</a></li>" +
+            			"<li><a href='javascript:;' ><i class='"+actionInfo.publishClass+"'></i>"+actionInfo.publishInfo+"</a></li>" +
+            			"<li><a href='javascript:;' ><i class='"+actionInfo.commentTypeClass+"'></i>"+actionInfo.commentTypeInfo+"</a></li>" +
+            			"<li><a href='javascript:;' ><i class='"+actionInfo.previewClass+"'></i>"+actionInfo.previewInfo+"</a></li>" +
+            			"<li><a href='javascript:;' ><i class='"+actionInfo.viewCommentsClass+"'></i>"+actionInfo.viewCommentsInfo+"</a></li><li class='divider'></li>" +
+            			"<li><a href='javascript:;' ><i class='"+actionInfo.deleteClass+"'></i>"+actionInfo.deleteInfo+"</a></li></ul></div>";
+            	$tds.eq(8).html(actionHtml).find("a").each(function(index,element){
+            		$(element).click(function(){
+            			operation(actionInfo,index);
+            		});
+            	});
+            	
             }
             
         });
@@ -189,7 +265,7 @@ var TableDatatablesManaged = function () {
                 return;
             }
 
-            initTable1();
+            articleTables();
         }
 
     };
@@ -203,7 +279,9 @@ var TableDatatablesManaged = function () {
 //}
 
 /**
- * 分装输出参数
+ * 封装发送到后台的参数
+ * @param data 原参数（datatables）
+ * @returns {draw:1,order:"",search:"",start:0,length:10}
  */
 function getQueryParam(data){
 	var dtParam={};
@@ -236,4 +314,89 @@ function getQueryParam(data){
 	dtParam.length=data.length;
 	
 	return dtParam;
+}
+
+
+/**
+ * 文章操作
+ * @param info 文章信息对象
+ */
+function operation(info,index){
+	if(!info || !info.id || info.id=="" || !index){
+		toastr["error"]("请检查参数是否有误！", "无法识别的操作");
+		return;
+	}
+	//设置进度条
+	App.blockUI({
+        target: '#blockui_articleTables',
+        animate: true
+    });
+	var url="";
+	var type="GET";
+	var data="";
+	switch(index){
+	case 0:
+		url=info.updateUrl;
+		type=info.updateType;
+		break;
+	case 1:
+		url=info.putTopUrl;
+		type=info.putTopType;
+		data=info.putTopValue;
+		break;
+	case 2:
+		url=info.publishUrl;
+		type=info.publishType;
+		data=info.publishValue;
+		break;
+	case 3:
+		url=info.commentTypeUrl;
+		type=info.commentType;
+		data=info.commentTypeValue;
+		break;
+	case 4:
+		url=info.previewUrl;
+		type=info.previewType;
+		break;
+	case 5:
+		url=info.viewCommentsUrl;
+		type=info.viewCommentsType;
+		break;
+	case 6:
+		url=info.deleteUrl;
+		type=info.deleteType;
+		break;
+	}
+	
+	console.info(url);
+	console.info(data);
+	console.info(type);
+	console.info(info.id);
+	
+	if(url!=""){
+		$.ajax({
+			url : url + info.id,
+			type : type,
+			data : data,
+			dataType : "json",
+			success : function(src,textStatus) {
+				App.unblockUI('#blockui_articleTables');//关闭进度条
+				toastr["success"]("保存草稿箱成功！", "失败"); //通知插件toastr配置信息在ui-toastr.js
+				//table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
+			},
+			error : function(XMLHttpRequest) {
+				App.unblockUI('#blockui_articleTables');//关闭进度条
+				if(XMLHttpRequest.status==400){
+					toastr["error"]("保存草稿箱失败！400错误", "失败");
+				}else if(XMLHttpRequest.status==500){
+					toastr["error"]("保存草稿箱失败!500错误", "失败");
+				}
+				
+			}
+		});
+	}else{
+		App.unblockUI('#blockui_articleTables');//关闭进度条
+		toastr["error"]("请检查地址是否正确！", "没有请求地址");
+	}
+	
 }

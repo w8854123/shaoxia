@@ -11,7 +11,7 @@
 <h2>
 </h2>
 <!-- <div class="portlet light bordered"> -->
-	<div class="portlet-body">
+	<div class="portlet-body" id="blockui_articleTables">
 		<!-- <div class="table-toolbar">
 			<div class="row">
 				<div class="col-md-6">
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 		</div> -->
-		<table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+		<table class="table table-striped table-bordered table-hover table-checkable order-column" id="articleTables">
 			<thead>
 				<tr>
 					<!-- <th><label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"
@@ -54,6 +54,9 @@
 					<th>创建日期</th>
 					<th>操作</th>
 					<th>id</th>
+					<th>置顶</th>
+					<th>禁评</th>
+					<th>草稿</th>
 				</tr>
 			</thead>
 			<tbody>
