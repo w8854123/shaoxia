@@ -98,7 +98,7 @@ var TableDatatablesManaged = function () {
                 [7, "desc"]
             ], // set first column as a default sort by asc
             
-            ajax : function(data, callback, settings){ //data:发送给服务器的数据;callback:必须被执行，Datatables才能获取到数据;settings:Datatables的设置对象
+            "ajax" : function(data, callback, settings){ //data:发送给服务器的数据;callback:必须被执行，Datatables才能获取到数据;settings:Datatables的设置对象
             	//设置进度条
             	App.blockUI({
                     target: '#blockui_articleTables',
