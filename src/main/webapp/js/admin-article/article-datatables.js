@@ -1,3 +1,4 @@
+var table;
 var TableDatatablesManaged = function () {
 
     var articleTables = function () {
@@ -5,7 +6,7 @@ var TableDatatablesManaged = function () {
 //        var table = $('#articleTables');
 
         // begin first table
-    	var table = $('#articleTables').DataTable({
+    	table = $('#articleTables').DataTable({
 
             // Internationalisation. For more info refer to http://datatables.net/manual/i18n
             "language": {
@@ -236,6 +237,10 @@ var TableDatatablesManaged = function () {
             });
         }).draw();//draw 最后一个重绘方法，生成序号后，重新绘制。DT 的每个操作，包括排序、过滤、翻页还是自己使用API操作这些操作或者是设置了数据都要再调用 draw 方法才行
         
+//        if(reload){
+//        	table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
+//        }
+        
 //        var tableWrapper = jQuery('#articleTables_wrapper');
 
 //        table.find('.group-checkable').change(function () {
@@ -381,8 +386,8 @@ function operation(info,index){
 			dataType : "json",
 			success : function(src,textStatus) {
 				App.unblockUI('#blockui_articleTables');//关闭进度条
-				toastr["success"]("保存草稿箱成功！", "失败"); //通知插件toastr配置信息在ui-toastr.js
-				//table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
+				toastr["success"]("成功！", "成功"); //通知插件toastr配置信息在ui-toastr.js
+				table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
 			},
 			error : function(XMLHttpRequest) {
 				App.unblockUI('#blockui_articleTables');//关闭进度条
