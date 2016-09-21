@@ -188,7 +188,7 @@ var TableDatatablesManaged = function () {
             		actionInfo.publishClass="icon-feed";
             		actionInfo.publishValue={publish:0};
             	}else{
-            		stateHtml='<span class="label label-sm label-info">在线</span>';
+            		stateHtml='<span class="label label-sm label-info">刊载</span>';
             	}
             	if(data.putTop==1){
             		stateHtml +='<span class="label label-sm label-success">置顶</span>';
