@@ -9,6 +9,7 @@
 <!-- END PAGE BAR -->
 <!-- BEGIN EXAMPLE TABLE PORTLET-->
 <h2>
+<a class="btn dark btn-outline sbold" data-toggle="modal" href="#full"> View Demo </a>
 </h2>
 <!-- <div class="portlet light bordered"> -->
 	<div class="portlet-body" id="blockui_articleTables">
@@ -191,3 +192,55 @@
 	</div>
 <!-- </div> -->
 <!-- END EXAMPLE TABLE PORTLET-->
+
+<!-- /.modal -->
+<div class="modal fade modal-scroll" id="full" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-full">
+		<div class="modal-content">
+			<!--  			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title">Modal Title</h4>
+			</div> -->
+			<div class="modal-body">
+				<h2 class="page-title">标题</h2>
+				<!-- END PAGE TITLE-->
+				<input id="articleTitle" type="text" class="form-control" placeholder="文章标题">
+				<h2 class="page-title">正文</h2>
+				<div class="portlet light form-fit">
+					<div class="portlet-body form">
+						<div id="content"></div>
+					</div>
+				</div>
+				<h2 class="page-title">
+					标签 <small>（使用英文输入状态下的逗号进行分隔）</small>
+				</h2>
+				<input id="articleTags" type="text" class="form-control" placeholder="标签">
+				<h2 class="page-title">摘要</h2>
+				<div class="portlet light form-fit">
+					<div class="portlet-body form">
+						<div id="abstr"></div>
+					</div>
+				</div>
+				<div class="text-right">
+					<p style="display: -webkit-inline-box;">允许评论：</p>
+					<input id="allowComment" type="checkbox" checked class="make-switch replyCheckbox" data-size="small" value="0">
+					<button type="button" data-loading-text="保存中..." onclick="saveArticle(1)" class="btn green mt-ladda-btn ladda-button draft"
+						data-style="zoom-in">
+						<i class="fa fa-save"></i> <span class="ladda-label">草稿箱</span>
+					</button>
+					<button type="button" data-loading-text="发布中..." onclick="saveArticle(0)" class="btn red mt-ladda-btn ladda-button publish"
+						data-style="zoom-in">
+						<i class="fa fa-share-square-o"></i> <span class="ladda-label">发&nbsp;&nbsp;布</span>
+					</button>
+				</div>
+
+			</div>
+			<!-- 			<div class="modal-footer">
+				<button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+				<button type="button" class="btn green">Save changes</button>
+			</div> -->
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

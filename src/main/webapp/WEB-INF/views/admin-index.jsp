@@ -1179,6 +1179,7 @@
         <script src="/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
         <script src="/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
         <script src="/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+        <script src="/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="/global/scripts/app.min.js" type="text/javascript"></script>
