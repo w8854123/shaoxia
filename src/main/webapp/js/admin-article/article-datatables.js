@@ -3,12 +3,8 @@ var TableDatatablesManaged = function () {
 
     var articleTables = function () {
 
-//        var table = $('#articleTables');
-
         // begin first table
     	table = $('#articleTables').DataTable({
-
-            // Internationalisation. For more info refer to http://datatables.net/manual/i18n
             "language": {
                 "aria": {
                     "sortAscending": ": activate to sort column ascending",
@@ -29,25 +25,11 @@ var TableDatatablesManaged = function () {
                     "first": "首页"
                 }
             },
-            
             "processing": false, //开启加载提示
             "serverSide": true, //开启服务器模式
-            
-            // Or you can use remote translation file
-            //"language": {
-            //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
-            //},
-
-            // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
-            // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
-            // So when dropdowns used the scrollable div should be removed. 
-            //"dom": "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
-
             "bStateSave": false, // save datatable state(pagination, sort, etc) in cookie.
-            
             "searching": true,//是否允许Datatables开启本地搜索
             "searchDelay":800,//设置搜索延迟时间单位ms
-            
             "lengthMenu": [
                 [5, 15, 20, 25],
                 [5, 15, 20, 25] // change per page values here
@@ -203,9 +185,6 @@ var TableDatatablesManaged = function () {
             		actionInfo.commentTypeClass="icon-lock-open";
             		actionInfo.commentTypeValue={commentType:0};
             	}
-//            	if(stateHtml==""){
-//            		stateHtml='<span class="label label-sm label-info">已发布</span>';
-//            	}
             	$tds.eq(3).html(stateHtml);
             	//设置操作
             	var actionHtml="<div class='btn-group'><button class='btn btn-xs green dropdown-toggle' type='button' data-toggle='dropdown' aria-expanded='false'> 操作 <i class='fa fa-angle-down'></i></button><ul class='dropdown-menu pull-right' role='menu'>" +
@@ -237,44 +216,16 @@ var TableDatatablesManaged = function () {
             });
         }).draw();//draw 最后一个重绘方法，生成序号后，重新绘制。DT 的每个操作，包括排序、过滤、翻页还是自己使用API操作这些操作或者是设置了数据都要再调用 draw 方法才行
         
-//        if(reload){
-//        	table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
-//        }
-        
-//        var tableWrapper = jQuery('#articleTables_wrapper');
-
-//        table.find('.group-checkable').change(function () {
-//            var set = jQuery(this).attr("data-set");
-//            var checked = jQuery(this).is(":checked");
-//            jQuery(set).each(function () {
-//                if (checked) {
-//                    $(this).prop("checked", true);
-//                    $(this).parents('tr').addClass("active");
-//                } else {
-//                    $(this).prop("checked", false);
-//                    $(this).parents('tr').removeClass("active");
-//                }
-//            });
-//        });
-//
-//        table.on('change', 'tbody tr .checkboxes', function () {
-//            $(this).parents('tr').toggleClass("active");
-//        });
     }
 
     return {
-
-        //main function to initiate the module
         init: function () {
             if (!jQuery().dataTable) {
                 return;
             }
-
             articleTables();
         }
-
     };
-
 }();
 
 //if (App.isAngularJsApp() === false) { 
@@ -327,7 +278,7 @@ function getQueryParam(data){
  * @param info 文章信息对象
  */
 function operation(info,index){
-	if(!info || !info.id || info.id=="" || !index){
+	if(!info || !info.id || info.id==""){
 		toastr["error"]("请检查参数是否有误！", "无法识别的操作");
 		return;
 	}
@@ -373,35 +324,85 @@ function operation(info,index){
 		break;
 	}
 	
-	console.info(url);
-	console.info(data);
-	console.info(type);
-	console.info(info.id);
-	
 	if(url!=""){
-		$.ajax({
-			url : url + info.id,
-			type : type,
-			data : data,
-			dataType : "json",
-			success : function(src,textStatus) {
-				App.unblockUI('#blockui_articleTables');//关闭进度条
-				toastr["success"]("成功！", "成功"); //通知插件toastr配置信息在ui-toastr.js
-				table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
-			},
-			error : function(XMLHttpRequest) {
-				App.unblockUI('#blockui_articleTables');//关闭进度条
-				if(XMLHttpRequest.status==400){
-					toastr["error"]("保存草稿箱失败！400错误", "失败");
-				}else if(XMLHttpRequest.status==500){
-					toastr["error"]("保存草稿箱失败!500错误", "失败");
-				}
-				
-			}
-		});
+		if(index==0){
+			contentBodyLoad("编辑文章",url+info.id,newArti);  //admin-index.js
+		}else if(index==6){
+			//删除确认框
+//			bootbox.confirm("你确定删除吗?", function(result) {
+//				if(result){
+//					actionSend(url+info.id,type,data);
+//				}else{
+//					App.unblockUI('#blockui_articleTables');
+//					return;
+//				}
+//		    });
+			bootbox.setLocale("zh_CN");
+			bootbox.confirm({
+				size: 'small',
+			    message: '<div><p class="text-center" style="margin-bottom:0px;margin-top:0px;font-size:25px;">你确定删除吗?</p></div>', 
+			    callback: function(result){
+			    	if(result){
+						actionSend(url+info.id,type,data);
+					}else{
+						App.unblockUI('#blockui_articleTables');
+						return;
+					}
+			    }
+			});
+		}else{
+//			$.ajax({
+//				url : url + info.id,
+//				type : type,
+//				data : data,
+//				dataType : "json",
+//				success : function(src,textStatus) {
+//					App.unblockUI('#blockui_articleTables');//关闭进度条
+//					toastr["success"]("操作成功！", "温馨提示"); //通知插件toastr配置信息在ui-toastr.js
+//					table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
+//				},
+//				error : function(XMLHttpRequest) {
+//					App.unblockUI('#blockui_articleTables');//关闭进度条
+//					if(XMLHttpRequest.status==500){
+//						toastr["error"]("操作失败！500错误", "温馨提示");
+//					}else{
+//						toastr["error"]("操作失败！", "温馨提示");
+//					}
+//				}
+//			});
+			actionSend(url+info.id,type,data);
+		}
 	}else{
 		App.unblockUI('#blockui_articleTables');//关闭进度条
 		toastr["error"]("请检查地址是否正确！", "没有请求地址");
 	}
 	
+}
+
+/**
+ * 表格操作请求
+ * @param url 地址
+ * @param type 请求类型
+ * @param data 数据
+ */
+function actionSend(url,type,data){
+	$.ajax({
+		url : url,
+		type : type,
+		data : data,
+		dataType : "json",
+		success : function(src,textStatus) {
+			App.unblockUI('#blockui_articleTables');//关闭进度条
+			toastr["success"]("操作成功！", "温馨提示"); //通知插件toastr配置信息在ui-toastr.js
+			table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
+		},
+		error : function(XMLHttpRequest) {
+			App.unblockUI('#blockui_articleTables');//关闭进度条
+			if(XMLHttpRequest.status==500){
+				toastr["error"]("操作失败！500错误", "温馨提示");
+			}else{
+				toastr["error"]("操作失败！", "温馨提示");
+			}
+		}
+	});
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,8 @@ public class ArticleController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); //500 服务器错误
 	}
 	
+	
+	
 	/**
 	 * 条件分页查询文章数据
 	 * @param dtParam
@@ -59,5 +62,38 @@ public class ArticleController {
 			LOGGER.error("查询文章异常,异常信息:", e);
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); //500 服务器错误
+	}
+	
+	/**
+	 * 更新文章主数据
+	 * @param id
+	 * @param articleMain
+	 * @return
+	 */
+	@RequestMapping(value="/update/{id}",method=RequestMethod.PATCH)
+	public ResponseEntity<Void> updateArticleMainById(@PathVariable("id")String id,ArticleMain articleMain){
+		try {
+			articleService.updateArticleMainById(id,articleMain);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();  //204
+		} catch (Exception e) {
+			LOGGER.error("查询文章异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); //500 服务器错误
+	}
+	
+	/**
+	 * 根据id删除文章
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/delete/{id}",method=RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteArticleById(@PathVariable("id")String id){
+		try {
+			articleService.deleteArticleById(id);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();  //204
+		} catch (Exception e) {
+			LOGGER.error("查询文章异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); //500 服务器错误
 	}
 }

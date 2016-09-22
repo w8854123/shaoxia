@@ -13,8 +13,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shaoxia.bean.DataTablesParam;
 import com.shaoxia.bean.DataTablesResult;
+import com.shaoxia.mapper.ArticleCommentMapper;
 import com.shaoxia.mapper.ArticleContentMapper;
 import com.shaoxia.mapper.ArticleMainMapper;
+import com.shaoxia.pojo.ArticleComment;
 import com.shaoxia.pojo.ArticleContent;
 import com.shaoxia.pojo.ArticleMain;
 import com.shaoxia.threadlocal.UserThreadLocal;
@@ -27,6 +29,8 @@ public class ArticleService {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(ArticleService.class);
 
+	@Autowired
+	private ArticleCommentMapper articleCommentMapper;
 	@Autowired
 	private ArticleContentMapper articleContentMapper;
 	@Autowired
@@ -88,5 +92,37 @@ public class ArticleService {
 		dtResult.setData(pageInfo.getList());
 
 		return dtResult;
+	}
+
+	/**
+	 * 根据id更新文章主数据
+	 * @param id
+	 * @param articleMain
+	 * @throws Exception 
+	 */
+	public void updateArticleMainById(String id, ArticleMain articleMain) throws Exception {
+		if(articleMain!=null){
+			articleMain.setArticleId(id);
+			articleMainMapper.updateByPrimaryKeySelective(articleMain);
+		}else{
+			throw new Exception("articleMain不存在！");
+		}
+	}
+
+	/**
+	 * 根据id删除文章
+	 * @param id
+	 */
+	public void deleteArticleById(String id) {
+		
+		ArticleContent articleContent=new ArticleContent();
+		articleContent.setArticleId(id);
+		ArticleComment articleComment=new ArticleComment();
+		articleComment.setArticleId(id);
+		
+		articleMainMapper.deleteByPrimaryKey(id);  //删除主数据
+		articleContentMapper.delete(articleContent); //删除文章正文
+		articleCommentMapper.delete(articleComment); //删除文章评论
+		
 	}
 }

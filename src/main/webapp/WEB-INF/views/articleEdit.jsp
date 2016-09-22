@@ -14,13 +14,21 @@
 <!-- END PAGE TITLE-->
 <input id="articleTitle" type="text" class="form-control" placeholder="文章标题">
 <h2 class="page-title">正文</h2>
-<div name="summernote" id="content"> </div>
+<div class="portlet light form-fit">
+	<div class="portlet-body form">
+		<div id="content"></div>
+	</div>
+</div>
 <h2 class="page-title">标签
 	<small>（使用英文输入状态下的逗号进行分隔）</small>
 </h2>
 <input id="articleTags" type="text" class="form-control" placeholder="标签">
 <h2 class="page-title">摘要</h2>
-<div name="summernote" id="abstr"> </div>
+<div class="portlet light form-fit">
+	<div class="portlet-body form">
+		<div id="abstr"></div>
+	</div>
+</div>
 <div class="text-right">
 <p style="display:-webkit-inline-box;" >允许评论：</p>
 <input id="allowComment" type="checkbox" checked class="make-switch replyCheckbox" data-size="small" value="0">

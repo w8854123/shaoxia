@@ -14,8 +14,37 @@ var ComponentsEditors = function () {
 
     var handleSummernote = function () {
 //        $("#contentBody [name='summernote']").summernote({height: 500,lang: 'zh-CN'});
-        $('#content').summernote({height: 500,lang: 'zh-CN'});
-        $('#abstr').summernote({height: 200,lang: 'zh-CN'});
+        $('#content').summernote({
+        	height: 500,lang: 'zh-CN',
+        	toolbar:[
+        	         // [groupName, [list of button]]
+        	         ['style', ['style']],
+        	         ['font', ['bold', 'italic','underline','clear','strikethrough','subscript','superscript']],
+        	         ['fontname', ['fontname']],
+        	         ['fontsize', ['fontsize']],
+        	         ['color', ['color']],
+        	         ['para', ['ul', 'ol', 'paragraph','height']],
+        	         ['table', ['table']],
+        	         ['insert', ['link', 'picture', 'video','hr']],
+        	         ['view', ['fullscreen', 'codeview', 'help']]
+        	]
+        });
+        
+        $('#abstr').summernote({
+        	height: 200,lang: 'zh-CN',
+        	toolbar:[
+        	         // [groupName, [list of button]]
+        	         ['style', ['style']],
+        	         ['font', ['bold', 'italic','underline','clear','strikethrough','subscript','superscript']],
+        	         ['fontname', ['fontname']],
+        	         ['fontsize', ['fontsize']],
+        	         ['color', ['color']],
+        	         ['para', ['ul', 'ol', 'paragraph','height']],
+        	         ['table', ['table']],
+        	         ['insert', ['link', 'picture', 'video','hr']],
+        	         ['view', ['fullscreen', 'codeview', 'help']]
+        	]
+        });
         //API:
         //var sHTML = $('#summernote_1').code(); // get code
         //$('#summernote_1').destroy(); // destroy

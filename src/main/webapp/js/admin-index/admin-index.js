@@ -67,7 +67,6 @@ function loadContentBody(menu,obj){
 		data="文章列表";
 		initOpt=articleMana;
 	}
-//	console.info(data);
 	contentBodyLoad(data,url,initOpt);
 }
 
@@ -79,8 +78,14 @@ function loadContentBody(menu,obj){
  */
 function contentBodyLoad(data,url,initOpt){
 	$("#contentBody").load(url,function(response){
-//		console.info("加载成功");
 		$("#twoMenuName").html(data);
 		initOption.init(initOpt);
+		if(data=="编辑文章" && !response){
+			$("#articleTitle").val(response.articleId);
+			$('#content').summernote('code', response.articleContent);
+			$("#articleTags").val(response.articleTags);
+			$('#abstr').summernote('code', response.articleAbstract);
+			$(".replyCheckbox").bootstrapSwitch('state', response.commentType==0?true:false);
+		}
 	});
 }
