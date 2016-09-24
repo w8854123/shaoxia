@@ -9,7 +9,7 @@
 <!-- END PAGE BAR -->
 <!-- BEGIN EXAMPLE TABLE PORTLET-->
 <h2>
-<a class="btn dark btn-outline sbold" data-toggle="modal" href="#full"> View Demo </a>
+<!-- <a class="btn dark btn-outline sbold" data-toggle="modal" href="#full"> View Demo </a> -->
 </h2>
 <!-- <div class="portlet light bordered"> -->
 	<div class="portlet-body" id="blockui_articleTables">
@@ -194,7 +194,7 @@
 <!-- END EXAMPLE TABLE PORTLET-->
 
 <!-- /.modal -->
-<div class="modal fade modal-scroll" id="full" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="full" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-full">
 		<div class="modal-content">
 			<!--  			<div class="modal-header">

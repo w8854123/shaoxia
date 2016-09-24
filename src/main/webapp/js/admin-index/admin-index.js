@@ -40,7 +40,10 @@ var newArti={
  * 文章列表 初始化组件
  */
 var articleMana={
-		dataTables:true
+		dataTables:true,
+		uiButtons:true,
+		componentsEditors:true,
+		bootstrapSwitch:true
 }
 
 /**

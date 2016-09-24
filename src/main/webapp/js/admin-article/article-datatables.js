@@ -119,7 +119,7 @@ var TableDatatablesManaged = function () {
             			
             			updateInfo : " 编辑文章",
             			updateClass : "icon-note",
-            			updateUrl : "",
+            			updateUrl : "/admin/article/",
             			updateType : "GET",
 
             			putTopInfo : " 置顶文章",
@@ -326,17 +326,13 @@ function operation(info,index){
 	
 	if(url!=""){
 		if(index==0){
-			contentBodyLoad("编辑文章",url+info.id,newArti);  //admin-index.js
+//			contentBodyLoad("编辑文章",url+info.id,newArti);  //admin-index.js
+			App.unblockUI('#blockui_articleTables');
+			
+			$('#full').modal();
+			
 		}else if(index==6){
 			//删除确认框
-//			bootbox.confirm("你确定删除吗?", function(result) {
-//				if(result){
-//					actionSend(url+info.id,type,data);
-//				}else{
-//					App.unblockUI('#blockui_articleTables');
-//					return;
-//				}
-//		    });
 			bootbox.setLocale("zh_CN");
 			bootbox.confirm({
 				size: 'small',
@@ -351,25 +347,6 @@ function operation(info,index){
 			    }
 			});
 		}else{
-//			$.ajax({
-//				url : url + info.id,
-//				type : type,
-//				data : data,
-//				dataType : "json",
-//				success : function(src,textStatus) {
-//					App.unblockUI('#blockui_articleTables');//关闭进度条
-//					toastr["success"]("操作成功！", "温馨提示"); //通知插件toastr配置信息在ui-toastr.js
-//					table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
-//				},
-//				error : function(XMLHttpRequest) {
-//					App.unblockUI('#blockui_articleTables');//关闭进度条
-//					if(XMLHttpRequest.status==500){
-//						toastr["error"]("操作失败！500错误", "温馨提示");
-//					}else{
-//						toastr["error"]("操作失败！", "温馨提示");
-//					}
-//				}
-//			});
 			actionSend(url+info.id,type,data);
 		}
 	}else{
