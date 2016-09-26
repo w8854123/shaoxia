@@ -582,7 +582,6 @@ function actionSend(url,type,data,flag){
 				
 				App.unblockUI('#blockui_articleTables');
 				$('#editModal').modal("show");
-				
 			}else{
 				App.unblockUI('#blockui_articleTables');//关闭进度条
 				toastr["success"]("操作成功！", "温馨提示"); //通知插件toastr配置信息在ui-toastr.js
