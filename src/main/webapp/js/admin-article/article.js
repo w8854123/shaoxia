@@ -29,7 +29,8 @@ function saveArticle(publish){
 	};
 	if(id && id!=""){
 		send(article,"/admin/article/update/"+id,"PUT",function(){
-			table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
+			//table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
+			table.ajax.reload(); //重新发送ajax请求获取数据  客户端模式刷新
 		});  //保存修改
 	}else{
 		send(article,"/admin/article/insert","POST",function(){});  //新增

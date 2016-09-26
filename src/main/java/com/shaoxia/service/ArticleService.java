@@ -169,4 +169,15 @@ public class ArticleService {
 		articleContentMapper.updateByExampleSelective(articleContent, example);
 	}
 
+	/**
+	 * 查询所有文章主数据
+	 * @return
+	 */
+	public DataTablesResult<ArticleMain> queryAllArticle() {
+		List<ArticleMain> list=articleMainMapper.selectAll();
+		DataTablesResult<ArticleMain> dtResult = new DataTablesResult<ArticleMain>();
+		dtResult.setData(list);
+		return dtResult;
+	}
+
 }

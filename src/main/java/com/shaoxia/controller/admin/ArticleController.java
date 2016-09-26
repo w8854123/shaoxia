@@ -49,6 +49,21 @@ public class ArticleController {
 	}
 	
 	/**
+	 * 获取全部文章主数据
+	 * @return
+	 */
+	@RequestMapping(value="/query/all",method=RequestMethod.GET)
+	public ResponseEntity<DataTablesResult<ArticleMain>> queryAllArticle(){
+		try {
+			DataTablesResult<ArticleMain> dtResult=articleService.queryAllArticle();
+			return ResponseEntity.ok(dtResult); //200
+		} catch (Exception e) {
+			LOGGER.error("查询所有文章异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
+	
+	/**
 	 * 条件分页查询文章数据
 	 * @param dtParam
 	 * @return
