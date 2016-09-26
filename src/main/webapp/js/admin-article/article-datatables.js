@@ -119,7 +119,7 @@ var TableDatatablesManaged = function () {
             			
             			updateInfo : " 编辑文章",
             			updateClass : "icon-note",
-            			updateUrl : "/admin/article/",
+            			updateUrl : "/admin/article/query/",
             			updateType : "GET",
 
             			putTopInfo : " 置顶文章",
@@ -327,9 +327,10 @@ function operation(info,index){
 	if(url!=""){
 		if(index==0){
 //			contentBodyLoad("编辑文章",url+info.id,newArti);  //admin-index.js
+			actionSend(url+info.id,type,data,"edit");
 			App.unblockUI('#blockui_articleTables');
 			
-			$('#full').modal();
+			$('#editModal').modal("show");
 			
 		}else if(index==6){
 			//删除确认框
@@ -339,7 +340,7 @@ function operation(info,index){
 			    message: '<div><p class="text-center" style="margin-bottom:0px;margin-top:0px;font-size:25px;">你确定删除吗?</p></div>', 
 			    callback: function(result){
 			    	if(result){
-						actionSend(url+info.id,type,data);
+						actionSend(url+info.id,type,data,"");
 					}else{
 						App.unblockUI('#blockui_articleTables');
 						return;
@@ -347,7 +348,7 @@ function operation(info,index){
 			    }
 			});
 		}else{
-			actionSend(url+info.id,type,data);
+			actionSend(url+info.id,type,data,"");
 		}
 	}else{
 		App.unblockUI('#blockui_articleTables');//关闭进度条
@@ -361,22 +362,37 @@ function operation(info,index){
  * @param url 地址
  * @param type 请求类型
  * @param data 数据
+ * @param flag 标识符edit:编辑文章
+ * 
  */
-function actionSend(url,type,data){
+function actionSend(url,type,data,flag){
 	$.ajax({
 		url : url,
 		type : type,
 		data : data,
 		dataType : "json",
 		success : function(src,textStatus) {
-			App.unblockUI('#blockui_articleTables');//关闭进度条
-			toastr["success"]("操作成功！", "温馨提示"); //通知插件toastr配置信息在ui-toastr.js
-			table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
+			if(flag=="edit"){
+				$("#articleTitle").val(src.articleTitle);
+				$("#articleTags").val(src.articleTags);
+//				$('#content').summernote('insertText', src.articleContent);
+				$('#content').summernote('code', src.articleContent);
+				$('#abstr').summernote('code', src.articleAbstract);
+				$('#allowComment').bootstrapSwitch('state',(src.commentType==0?true:false)); // true || false
+				$("#articleId").val(src.articleId);
+				
+			}else{
+				App.unblockUI('#blockui_articleTables');//关闭进度条
+				toastr["success"]("操作成功！", "温馨提示"); //通知插件toastr配置信息在ui-toastr.js
+				table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
+			}
 		},
 		error : function(XMLHttpRequest) {
 			App.unblockUI('#blockui_articleTables');//关闭进度条
 			if(XMLHttpRequest.status==500){
 				toastr["error"]("操作失败！500错误", "温馨提示");
+			}else if(XMLHttpRequest.status==404){
+				toastr["error"]("没有找到可编辑的数据！404错误", "温馨提示");
 			}else{
 				toastr["error"]("操作失败！", "温馨提示");
 			}

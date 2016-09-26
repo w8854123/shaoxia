@@ -8,6 +8,7 @@ function saveArticle(publish){
 	var content=$("#content").summernote('code');   //文章正文
 	var abstr=$("#abstr").summernote('code');    //文章摘要
 	var allowComment=$("#allowComment:checked").val(); //允许评论
+	var id=$("#articleId").val(); //文章id
 	if(!allowComment){
 		allowComment=1;
 	}
@@ -26,14 +27,26 @@ function saveArticle(publish){
 		publish:publish
 		
 	};
-	send(article);
+	if(id && id!=""){
+		send(article,"/admin/article/update/"+id,"PUT",function(){
+			table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验
+		});  //保存修改
+	}else{
+		send(article,"/admin/article/insert","POST",function(){});  //新增
+	}
 	
 }
 
-function send(data){
+/**
+ * 发送ajax请求
+ * @param data 传至后端的数据
+ * @param url 地址
+ * @param type 请求类型
+ */
+function send(data,url,type,callback){
 	$.ajax({
-		url : "/admin/article/insert",
-		type : "POST",
+		url : url,
+		type : type,
 		data : data,
 		dataType : "text",
 		success : function(src,textStatus) {
@@ -44,6 +57,7 @@ function send(data){
 			}else{
 				toastr["success"]("发布成功！", data.articleTitle);
 			}
+			callback();
 		},
 		error : function(XMLHttpRequest) {
 			buttons.draftButton.stop();

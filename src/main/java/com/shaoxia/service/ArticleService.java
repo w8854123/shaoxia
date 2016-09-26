@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.shaoxia.bean.ArticleData;
 import com.shaoxia.bean.DataTablesParam;
 import com.shaoxia.bean.DataTablesResult;
 import com.shaoxia.mapper.ArticleCommentMapper;
 import com.shaoxia.mapper.ArticleContentMapper;
+import com.shaoxia.mapper.ArticleDataMapper;
 import com.shaoxia.mapper.ArticleMainMapper;
 import com.shaoxia.pojo.ArticleComment;
 import com.shaoxia.pojo.ArticleContent;
@@ -35,7 +37,16 @@ public class ArticleService {
 	private ArticleContentMapper articleContentMapper;
 	@Autowired
 	private ArticleMainMapper articleMainMapper;
+	@Autowired
+	private ArticleDataMapper articleDataMapper;
 
+	/**
+	 * 新增文章
+	 * @param articleMain
+	 * @param content
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean insertArticle(ArticleMain articleMain, String content) throws Exception {
 		if (articleMain != null) {
 			String uuid = UUID.randomUUID().toString();
@@ -103,6 +114,7 @@ public class ArticleService {
 	public void updateArticleMainById(String id, ArticleMain articleMain) throws Exception {
 		if(articleMain!=null){
 			articleMain.setArticleId(id);
+			articleMain.setUpdated(new Date());
 			articleMainMapper.updateByPrimaryKeySelective(articleMain);
 		}else{
 			throw new Exception("articleMain不存在！");
@@ -125,4 +137,36 @@ public class ArticleService {
 		articleCommentMapper.delete(articleComment); //删除文章评论
 		
 	}
+
+	/**
+	 * 根据id查询文章主数据和正文
+	 * @param id
+	 * @return
+	 */
+	public ArticleData queryArticleDataById(String id) {
+		ArticleData articleData=articleDataMapper.selectArticleDataById(id);
+		return articleData;
+	}
+
+	/**
+	 * 根据id修改文章主数据和正文
+	 * @param id
+	 * @param content 正文
+	 * @param articleMain 主数据
+	 */
+	public void updateArticleDataById(String id, String content, ArticleMain articleMain) {
+		articleMain.setArticleId(id);
+		articleMain.setUpdated(new Date());
+		ArticleContent articleContent=new ArticleContent();
+		articleContent.setArticleId(id);
+		articleContent.setArticleContent(content);
+		
+		articleMainMapper.updateByPrimaryKeySelective(articleMain);
+		
+		Example example=new Example(ArticleContent.class);
+		Criteria criteria=example.createCriteria();
+		criteria.andEqualTo("articleId", id);
+		articleContentMapper.updateByExampleSelective(articleContent, example);
+	}
+
 }

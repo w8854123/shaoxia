@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shaoxia.mapper.ArticleDataMapper">
+	
+    <select id="selectArticleDataById" parameterType="string" resultType="com.shaoxia.bean.ArticleData">
+       SELECT m.article_id,
+           m.article_author,
+           m.article_title,
+           m.article_tags,
+           m.article_abstract,
+           m.article_comment_count,
+           m.article_view_count,
+           m.good_point_count,
+           m.put_top,
+           m.comment_type,
+           m.publish,
+           m.created,
+           m.updated,
+           c.article_content
+  	   FROM shaoxia_article_main m
+       LEFT JOIN shaoxia_article_content c
+         ON m.article_id = c.article_id
+       WHERE m.article_id = #{id}
+    </select>
+	
+</mapper>

@@ -1,5 +1,7 @@
 package com.shaoxia.controller.admin;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.shaoxia.bean.ArticleData;
 import com.shaoxia.bean.DataTablesParam;
 import com.shaoxia.bean.DataTablesResult;
 import com.shaoxia.pojo.ArticleMain;
@@ -45,8 +48,6 @@ public class ArticleController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); //500 服务器错误
 	}
 	
-	
-	
 	/**
 	 * 条件分页查询文章数据
 	 * @param dtParam
@@ -64,6 +65,29 @@ public class ArticleController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); //500 服务器错误
 	}
 	
+	public ResponseEntity<Map<String, Object>> getOne(){
+		return null;
+	}
+	
+	/**
+	 * 根据id获取文章主数据和正文
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/query/{id}",method=RequestMethod.GET)
+	public ResponseEntity<ArticleData> queryArticleDataById(@PathVariable("id")String id){
+		try {
+			ArticleData articleData=articleService.queryArticleDataById(id);
+			if(articleData==null){
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  //404没有查询到数据
+			}
+			return ResponseEntity.ok(articleData);
+		} catch (Exception e) {
+			LOGGER.error("查询文章主数据和正文异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
+	
 	/**
 	 * 更新文章主数据
 	 * @param id
@@ -79,6 +103,24 @@ public class ArticleController {
 			LOGGER.error("查询文章异常,异常信息:", e);
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); //500 服务器错误
+	}
+	
+	/**
+	 * 更新文章主数据和正文
+	 * @param id
+	 * @param content
+	 * @param articleMain
+	 * @return
+	 */
+	@RequestMapping(value="/update/{id}",method=RequestMethod.PUT)
+	public ResponseEntity<Void> updateArticleDataById(@PathVariable("id")String id,@RequestParam("articleContent")String content,ArticleMain articleMain){
+		try {
+			articleService.updateArticleDataById(id,content,articleMain);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		} catch (Exception e) {
+			LOGGER.error("修改文章异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	}
 	
 	/**
