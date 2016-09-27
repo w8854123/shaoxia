@@ -12,7 +12,7 @@
 	标题 
 </h2>
 <!-- END PAGE TITLE-->
-<input id="articleTitle" type="text" class="form-control" placeholder="文章标题">
+<input id="articleTitle" type="text" class="form-control" placeholder="文章标题" maxlength="126">
 <h2 class="page-title">正文</h2>
 <div class="portlet light form-fit">
 	<div class="portlet-body form">
@@ -22,7 +22,7 @@
 <h2 class="page-title">标签
 	<small>（使用英文输入状态下的逗号进行分隔）</small>
 </h2>
-<input id="articleTags" type="text" class="form-control" placeholder="标签">
+<input id="articleTags" type="text" class="form-control" placeholder="标签" maxlength="126">
 <h2 class="page-title">摘要</h2>
 <div class="portlet light form-fit">
 	<div class="portlet-body form">

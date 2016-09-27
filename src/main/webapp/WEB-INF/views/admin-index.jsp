@@ -528,20 +528,28 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item  ">
-                                        <a href="components_date_time_pickers.html" class="nav-link ">
-                                            <span class="title">Date & Time Pickers</span>
+                                        <a href="javascript:;" class="nav-link " onclick="loadContentBody('allComment',this)">
+                                            <span class="title">全部</span>
+                                            <span class="badge badge-info">999999999</span>
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
-                                        <a href="components_color_pickers.html" class="nav-link ">
-                                            <span class="title">Color Pickers</span>
-                                            <span class="badge badge-danger">2</span>
+                                        <a href="javascript:;" class="nav-link " onclick="loadContentBody('pendingComment',this)">
+                                            <span class="title">待审</span>
+                                            <!-- <span class="badge badge-primary">2</span> -->
+                                            <span class="badge badge-warning">2</span>
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
-                                        <a href="components_bootstrap_switch.html" class="nav-link ">
-                                            <span class="title">Bootstrap Switch</span>
+                                        <a href="javascript:;" class="nav-link " onclick="loadContentBody('approvalComment',this)">
+                                            <span class="title">已批准</span>
                                             <span class="badge badge-success">6</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link " onclick="loadContentBody('spamComment',this)">
+                                            <span class="title">垃圾</span>
+                                            <span class="badge badge-danger">6</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -1179,6 +1187,7 @@
         <script src="/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
         <script src="/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
         <script src="/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+        <script src="/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
         <!-- <script src="/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script> -->
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
@@ -1192,6 +1201,7 @@
         <!-- <script src="/pages/scripts/components-bootstrap-switch.js" type="text/javascript"></script> -->
         <!-- <script src="/pages/scripts/table-datatables-managed.js" type="text/javascript"></script> -->
         <!-- <script src="/pages/scripts/ui-bootbox.js" type="text/javascript"></script> -->
+        <!-- <script src="/pages/scripts/components-bootstrap-maxlength.js" type="text/javascript"></script> -->
         <!-- END PAGE LEVEL SCRIPTS -->
         
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
@@ -1201,7 +1211,8 @@
         <!-- END THEME LAYOUT SCRIPTS -->
         <script src="/js/admin-index/admin-index.js" type="text/javascript"></script>
         <script src="/js/admin-article/article.js" type="text/javascript"></script>
-        <script src="/js/admin-article/article-datatables.js" type="text/javascript"></script>
+        <script src="/js/common/datatables.js" type="text/javascript"></script>
+        <script src="/js/admin-comment/comment.js" type="text/javascript"></script>
         
     </body>
 </html>

@@ -16,6 +16,8 @@ public class ArticleComment {
 	private Long commentId;
 	//文章主表id
 	private String articleId;
+	//文章标题
+	private String articleTitle;
 	//评论内容
 	private String commentContent;
 	//评论时间
@@ -28,6 +30,10 @@ public class ArticleComment {
 	private Long commentQq;
 	//评论者网站
 	private String commentUrl;
+	//审核 0：待审，1：批准
+	private Integer commentAudit;
+	//垃圾评论 0：正常，1：垃圾
+	private Integer commentSpam;
 	//类型，0：根，1：回复
 	private Integer commentType;
 	//父评论id
@@ -100,6 +106,24 @@ public class ArticleComment {
 	}
 	public void setOriginalCommentName(String originalCommentName) {
 		this.originalCommentName = originalCommentName;
+	}
+	public String getArticleTitle() {
+		return articleTitle;
+	}
+	public void setArticleTitle(String articleTitle) {
+		this.articleTitle = articleTitle;
+	}
+	public Integer getCommentAudit() {
+		return commentAudit;
+	}
+	public void setCommentAudit(Integer commentAudit) {
+		this.commentAudit = commentAudit;
+	}
+	public Integer getCommentSpam() {
+		return commentSpam;
+	}
+	public void setCommentSpam(Integer commentSpam) {
+		this.commentSpam = commentSpam;
 	}
 	
 }

@@ -7,6 +7,18 @@ var buttons={
  */
 var initOption={
 		init:function(initOpt){
+			if(initOpt.maxlength){
+				$('#articleTitle').maxlength({
+		            limitReachedClass: "label label-danger",
+		            threshold: 26, //剩余多少字符时提示
+		            appendToParent: true  //默认为false，设为true后可以显示再modal窗口上
+		        });
+				$('#articleTags').maxlength({
+					limitReachedClass: "label label-danger",
+					threshold: 26,
+					appendToParent: true
+				});
+			}
 			if(initOpt.componentsEditors){	//初始化富文本编辑器
 				ComponentsEditors.init();
 			}
@@ -22,7 +34,7 @@ var initOption={
 			}
 			if(initOpt.dataTables){  //初始化jquery dataTables
 				if (App.isAngularJsApp() === false) {
-					TableDatatablesManaged.init();
+					TableDatatablesManaged.init(initOpt.dataTablesType);
 				}
 			}
 		}
@@ -34,16 +46,19 @@ var initOption={
 var newArti={
 		uiButtons:true,
 		componentsEditors:true,
-		bootstrapSwitch:true
+		bootstrapSwitch:true,
+		maxlength:true
 }
 /**
  * 文章列表 初始化组件
  */
 var articleMana={
 		dataTables:true,
+		dataTablesType:"article",
 		uiButtons:true,
 		componentsEditors:true,
-		bootstrapSwitch:true
+		bootstrapSwitch:true,
+		maxlength:true
 }
 
 /**
@@ -60,16 +75,48 @@ function loadContentBody(menu,obj){
 	var initOpt={
 			
 	};
-	if(menu=="newArticle"){ //发布新文章
+	switch(menu){
+	case "newArticle":
 		url="/admin/articleEdit.html";
 		data="发布文章";
 		initOpt=newArti;
-	}
-	if(menu=="articleManage"){ //文章列表
+		break;
+	case "articleManage":
 		url="/admin/articleManage.html";
 		data="文章列表";
 		initOpt=articleMana;
+		break;
+	case "allComment":
+		url="/admin/commentManage.html";
+		data="全部评论";
+		initOpt="";
+		break;
+	case "pendingComment":
+		url="/admin/commentManage.html";
+		data="待审评论";
+		initOpt="";
+		break;
+	case "approvalComment":
+		url="/admin/commentManage.html";
+		data="已批准评论";
+		initOpt="";
+		break;
+	case "spamComment":
+		url="/admin/commentManage.html";
+		data="垃圾评论";
+		initOpt="";
+		break;
 	}
+//	if(menu=="newArticle"){ //发布新文章
+//		url="/admin/articleEdit.html";
+//		data="发布文章";
+//		initOpt=newArti;
+//	}
+//	if(menu=="articleManage"){ //文章列表
+//		url="/admin/articleManage.html";
+//		data="文章列表";
+//		initOpt=articleMana;
+//	}
 	contentBodyLoad(data,url,initOpt);
 }
 

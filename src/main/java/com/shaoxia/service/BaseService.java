@@ -52,7 +52,7 @@ public abstract class BaseService<T> {
      * @return
      */
     public List<T> queryAll(){
-        return this.getMapper().select(null);
+        return this.getMapper().selectAll();
     }
     
     /**
