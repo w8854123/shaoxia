@@ -107,16 +107,6 @@ function loadContentBody(menu,obj){
 		initOpt="";
 		break;
 	}
-//	if(menu=="newArticle"){ //发布新文章
-//		url="/admin/articleEdit.html";
-//		data="发布文章";
-//		initOpt=newArti;
-//	}
-//	if(menu=="articleManage"){ //文章列表
-//		url="/admin/articleManage.html";
-//		data="文章列表";
-//		initOpt=articleMana;
-//	}
 	contentBodyLoad(data,url,initOpt);
 }
 
