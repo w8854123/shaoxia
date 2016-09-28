@@ -118,7 +118,7 @@ function getQueryParam(data){
  * 文章操作
  * @param info 文章信息对象
  */
-function operation(info,index){
+function operationArticle(info,index){
 	if(!info || !info.id || info.id==""){
 		toastr["error"]("请检查参数是否有误！", "无法识别的操作");
 		return;

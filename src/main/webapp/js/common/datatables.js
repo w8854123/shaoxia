@@ -280,7 +280,7 @@ var TableDatatablesManaged = function () {
 //            			"<li><a href='javascript:;' ><i class='"+actionInfo.deleteClass+"'></i>"+actionInfo.deleteInfo+"</a></li></ul></div>";
 //            	$tds.eq(8).html(actionHtml).find("a").each(function(index,element){
 //            		$(element).click(function(){
-//            			operation(actionInfo,index);
+//            			operationArticle(actionInfo,index);
 //            		});
 //            	});
 //            	
@@ -353,37 +353,6 @@ var TableDatatablesManaged = function () {
             		url="/admin/article/query";
             	}
             	loadData("blockui_articleTables",url,serverSide,data,callback);
-//            	//设置进度条
-//            	App.blockUI({
-//                    target: '#blockui_articleTables',
-//                    animate: true
-//                });
-//            	
-//            	//封装输入参数
-//            	var dtParam="";
-//            	var url="/admin/article/query/all";
-//            	if(serverSide){  //启用服务器模式
-//                	dtParam=getQueryParam(data);
-//                	url="/admin/article/query";
-//            	}
-//
-//            	
-//            	$.ajax({
-//            		url : url,
-//            		type : "GET",
-//            		data : dtParam,
-//            		dataType : "json",
-//            		success : function(dtResult,textStatus) {
-//            			callback(dtResult);
-//            			App.unblockUI('#blockui_articleTables');//关闭进度条
-//            		},
-//            		error : function(XMLHttpRequest) {
-//            			App.unblockUI('#blockui_articleTables');//关闭进度条
-//            			if(XMLHttpRequest.status==500){
-//            				toastr["error"]("查询文章出错!500错误");
-//            			}
-//            		}
-//            	});
             },
             
             "createdRow":function(row, data, dataIndex){ //行渲染回调,在这里可以对该行dom元素进行任何操作
@@ -475,7 +444,7 @@ var TableDatatablesManaged = function () {
             			"<li><a href='javascript:;' ><i class='"+actionInfo.deleteClass+"'></i>"+actionInfo.deleteInfo+"</a></li></ul></div>";
             	$tds.eq(8).html(actionHtml).find("a").each(function(index,element){
             		$(element).click(function(){
-            			operation(actionInfo,index);
+            			operationArticle(actionInfo,index);
             		});
             	});
             	
@@ -506,16 +475,49 @@ var TableDatatablesManaged = function () {
             "pagingType": "bootstrap_full_number",
             "columns":[
                 {"data":null},
+                {"data":"commentId"},
+                {"data":"articleId"},
                 {"data":"articleTitle"},
+                {"data":"commentContent"},
+                {"data":null},
+                {"data":"commentDate"},
+                {"data":"commentEmail"},
+                {"data":"commentName"},
+                {"data":"commentQq"},
+                {"data":"commentUrl"},
+                {"data":"commentAudit"},
+                {"data":"commentSpam"},
+                {"data":"commentType"},
+                {"data":"originalCommentId"},
+                {"data":"originalCommentName"},
+                {"data":"iconUrl"}
             ],
             "columnDefs": [
                 {  // set default column settings
                 	'orderable': false,
-                    'targets': [0,1,2,3,8,9]
+                    'targets': [0,1,2,3,4,5,7,8,9,10,11,12,13,14,15,16]
                 }, 
+                {
+                    "searchable": false,
+                    "targets": [0,1,2,5,6,7,10,11,12,13,14,15,16]
+                },
+                {
+                    "render": function(data, type, row , meta) { //参看https://datatables.net/reference/option/columns.render
+                    	var time=new Date(data);
+                        return time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate()+" "+time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+                    },
+                    "targets": [6]
+                },
+                {
+                	"visible": false, //可见性
+                    "targets": [1,2,7,9,10,11,12,13,14,15,16]
+                },
+                {
+                    "className": "dt-right", 
+                }
              ],
     		"order": [
-    		    [7, "desc"]
+    		    [6, "desc"]
              ],
              
              "ajax" : function(data, callback, settings){
@@ -528,7 +530,30 @@ var TableDatatablesManaged = function () {
              	
              },
              "createdRow":function(row, data, dataIndex){
-            	 
+            	//row:已经被创建的tr元素
+             	//data:包含这行的数据对象
+             	//dataIndex:Datatables内部存储的数据索引
+            	var $tds=$('td', row);
+            	//设置状态
+             	var stateHtml="";
+             	var id=data.commentId;
+             	if(data.commentAudit==1){
+             		stateHtml +='<span class="label label-sm label-warning" style="cursor:pointer;" onclick="operationComment(\'audit\',0,'+id+')">驳回</span>';
+             	}else{
+             		stateHtml='<span class="label label-sm label-success" style="cursor:pointer;" onclick="operationComment(\'audit\',1,'+id+')">批准</span>';
+             	}
+             	if(data.commentSpam==0){
+             		stateHtml +='<span class="label label-sm label-danger" style="cursor:pointer;" onclick="operationComment(\'spam\',1,'+id+')">垃圾</span>';
+             	}
+             	stateHtml += '<span class="label label-sm label-info" style="cursor:pointer;" onclick="operationComment(\'delete\',1,'+id+')">删除</span>';
+             	//设置@谁 样式
+             	var replyTo="";
+             	if(data.commentType==1){
+             		replyTo = '<span class="font-red-haze">@:</span><span class="font-blue-soft">'+data.originalCommentName+'</span><br>';
+             	}
+             	$tds.eq(2).html(replyTo+data.commentContent);
+             	$tds.eq(3).html(stateHtml);
+             	$tds.not(":eq(2)").css("vertical-align","middle");
              }
     	});
     	

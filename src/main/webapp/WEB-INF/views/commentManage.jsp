@@ -17,11 +17,12 @@
 					<th>#</th>
 					<th>id</th>
 					<th>文章Id</th>
-					<th>文章标题</th>
-					<th>评论内容</th>
-					<th>评论时间</th>
+					<th>回复至</th>
+					<th>评论</th>
+					<th>处理评论</th>
+					<th>提交于</th>
 					<th>邮箱</th>
-					<th>昵称</th>
+					<th>作者</th>
 					<th>QQ</th>
 					<th>URL</th>
 					<th>审核状态</th>
@@ -29,7 +30,7 @@
 					<th>类型</th>
 					<th>父评论id</th>
 					<th>父昵称</th>
-					<th>操作</th>
+					<th>头像</th>
 				</tr>
 			</thead>
 			<tbody>

@@ -30,6 +30,8 @@ public class ArticleComment {
 	private Long commentQq;
 	//评论者网站
 	private String commentUrl;
+	//评论者头像
+	private String iconUrl;
 	//审核 0：待审，1：批准
 	private Integer commentAudit;
 	//垃圾评论 0：正常，1：垃圾
@@ -124,6 +126,12 @@ public class ArticleComment {
 	}
 	public void setCommentSpam(Integer commentSpam) {
 		this.commentSpam = commentSpam;
+	}
+	public String getIconUrl() {
+		return iconUrl;
+	}
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
 	}
 	
 }

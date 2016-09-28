@@ -60,6 +60,13 @@ var articleMana={
 		bootstrapSwitch:true,
 		maxlength:true
 }
+/**
+ * 评论管理 初始化组件
+ */
+var commentMana={
+		dataTables:true,
+		dataTablesType:"comment"
+}
 
 /**
  * 加载contentBody
@@ -89,7 +96,7 @@ function loadContentBody(menu,obj){
 	case "allComment":
 		url="/admin/commentManage.html";
 		data="全部评论";
-		initOpt="";
+		initOpt=commentMana;
 		break;
 	case "pendingComment":
 		url="/admin/commentManage.html";

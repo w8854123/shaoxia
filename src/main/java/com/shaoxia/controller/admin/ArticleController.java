@@ -42,7 +42,7 @@ public class ArticleController {
 			}
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); //400 没有创建成功
 		} catch (Exception e) {
-			LOGGER.info("新增文章数据异常,输出参数： articleMain = {} , content = {} ",articleMain,content);
+			LOGGER.info("新增文章数据异常,输入参数： articleMain = {} , content = {} ",articleMain,content);
 			LOGGER.error("新增文章数据异常,异常信息:", e);
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); //500 服务器错误
@@ -74,8 +74,8 @@ public class ArticleController {
 			DataTablesResult<ArticleMain> dtResult=articleService.queryArticle(dtParam);
 			return ResponseEntity.ok(dtResult); //200
 		} catch (Exception e) {
-			LOGGER.info("查询文章异常,输出参数： dtParam = {} ",dtParam);
-			LOGGER.error("查询文章异常,异常信息:", e);
+			LOGGER.info("条件分页查询文章数据异常,输出参数： dtParam = {} ",dtParam);
+			LOGGER.error("条件分页查询文章数据异常,异常信息:", e);
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); //500 服务器错误
 	}
@@ -115,7 +115,7 @@ public class ArticleController {
 			articleService.updateArticleMainById(id,articleMain);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();  //204
 		} catch (Exception e) {
-			LOGGER.error("查询文章异常,异常信息:", e);
+			LOGGER.error("更新文章主数据异常,异常信息:", e);
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); //500 服务器错误
 	}
@@ -133,7 +133,7 @@ public class ArticleController {
 			articleService.updateArticleDataById(id,content,articleMain);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		} catch (Exception e) {
-			LOGGER.error("修改文章异常,异常信息:", e);
+			LOGGER.error("更新文章主数据和正文异常,异常信息:", e);
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	}
@@ -149,7 +149,7 @@ public class ArticleController {
 			articleService.deleteArticleById(id);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();  //204
 		} catch (Exception e) {
-			LOGGER.error("查询文章异常,异常信息:", e);
+			LOGGER.error("根据id删除文章异常,异常信息:", e);
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); //500 服务器错误
 	}
