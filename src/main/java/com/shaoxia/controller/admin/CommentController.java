@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.shaoxia.bean.CommentData;
 import com.shaoxia.bean.DataTablesResult;
 import com.shaoxia.pojo.ArticleComment;
 import com.shaoxia.service.CommentService;
@@ -22,6 +23,21 @@ public class CommentController {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	/**
+	 * 统计各项评论数
+	 * @return
+	 */
+	@RequestMapping(value="/query/count",method=RequestMethod.GET)
+	public ResponseEntity<CommentData> queryCommentCount(){
+		try {
+			CommentData commentData=commentService.queryCommentCount();
+			return ResponseEntity.ok(commentData);
+		} catch (Exception e) {
+			LOGGER.error("统计各项评论数异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
 	
 	/**
 	 * 获取所有评论 除垃圾评论外
@@ -39,22 +55,66 @@ public class CommentController {
 	}
 	
 	/**
+	 * 查询所有待审评论
+	 * @return
+	 */
+	@RequestMapping(value="/query/audit",method=RequestMethod.GET)
+	public ResponseEntity<DataTablesResult<ArticleComment>> queryCommentOfAudit(){
+		try {
+			DataTablesResult<ArticleComment> dtResult=commentService.queryCommentOfAudit();
+			return ResponseEntity.ok(dtResult);
+		} catch (Exception e) {
+			LOGGER.error("查询所有待审评论异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
+	
+	/**
+	 * 查询所有批准评论
+	 * @return
+	 */
+	@RequestMapping(value="/query/approval",method=RequestMethod.GET)
+	public ResponseEntity<DataTablesResult<ArticleComment>> queryCommentOfApproval(){
+		try {
+			DataTablesResult<ArticleComment> dtResult=commentService.queryCommentOfApproval();
+			return ResponseEntity.ok(dtResult);
+		} catch (Exception e) {
+			LOGGER.error("查询所有批准评论异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
+	
+	/**
+	 * 查询所有垃圾评论
+	 * @return
+	 */
+	@RequestMapping(value="/query/spam",method=RequestMethod.GET)
+	public ResponseEntity<DataTablesResult<ArticleComment>> queryCommentOfSpam(){
+		try {
+			DataTablesResult<ArticleComment> dtResult=commentService.queryCommentOfSpam();
+			return ResponseEntity.ok(dtResult);
+		} catch (Exception e) {
+			LOGGER.error("查询所有垃圾评论异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
+	
+	/**
 	 * 根据id更新评论
 	 * @param commentId
 	 * @param articleComment
 	 * @return
 	 */
 	@RequestMapping(value="/update/{commentId}",method=RequestMethod.PATCH)
-	public ResponseEntity<Void> updateCommentById(@PathVariable("commentId")Long commentId,ArticleComment articleComment){
+	public ResponseEntity<CommentData> updateCommentById(@PathVariable("commentId")Long commentId,ArticleComment articleComment){
 		try {
-			articleComment.setCommentId(commentId);
-			commentService.updateByIdSelective(articleComment);
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();  //204
+			CommentData commentData=commentService.updateCommentById(commentId,articleComment);
+			return ResponseEntity.status(HttpStatus.OK).body(commentData); //200
 		} catch (Exception e) {
 			LOGGER.info("根据id更新评论异常,输入参数： commentId = {} , articleComment = {} ",commentId,articleComment);
 			LOGGER.error("根据id更新评论异常,异常信息:", e);
 		}
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 	}
 	
 	/**
@@ -63,13 +123,13 @@ public class CommentController {
 	 * @return
 	 */
 	@RequestMapping(value="/delete/{commentId}",method=RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteCommentById(@PathVariable("commentId")Long commentId){
+	public ResponseEntity<CommentData> deleteCommentById(@PathVariable("commentId")Long commentId){
 		try {
-			commentService.deleteById(commentId);
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			CommentData commentData=commentService.deleteCommentById(commentId);
+			return ResponseEntity.status(HttpStatus.OK).body(commentData);
 		} catch (Exception e) {
 			LOGGER.error("根据id删除评论异常,异常信息:", e);
 		}
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 	}
 }

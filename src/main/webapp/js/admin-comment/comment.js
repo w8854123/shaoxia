@@ -25,6 +25,11 @@ function operationComment(type,val,commentId){
 		data : data,
 		dataType : "json",
 		success : function(src,textStatus) {
+			$("#sumComment").text(src.sum);
+			$("#sumAudit").text(src.sumAudit);
+			$("#sumApproval").text(src.sumApproval);
+			$("#sumSpam").text(src.sumSpam);
+			
 			App.unblockUI('#blockui_commentTables');//关闭进度条
 			toastr["success"]("操作成功！", "温馨提示"); //通知插件toastr配置信息在ui-toastr.js
 			//table.draw();//重绘表格   //reload效果与draw(true)或者draw()类似,draw(false)则可在获取新数据的同时停留在当前页码,可自行试验

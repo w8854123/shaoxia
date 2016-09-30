@@ -34,7 +34,7 @@ var initOption={
 			}
 			if(initOpt.dataTables){  //初始化jquery dataTables
 				if (App.isAngularJsApp() === false) {
-					TableDatatablesManaged.init(initOpt.dataTablesType);
+					TableDatatablesManaged.init(initOpt);
 				}
 			}
 		}
@@ -55,6 +55,7 @@ var newArti={
 var articleMana={
 		dataTables:true,
 		dataTablesType:"article",
+		serverSide:false, //开启客户端模式  true服务端模式
 		uiButtons:true,
 		componentsEditors:true,
 		bootstrapSwitch:true,
@@ -65,7 +66,8 @@ var articleMana={
  */
 var commentMana={
 		dataTables:true,
-		dataTablesType:"comment"
+		dataTablesType:"comment",
+		serverSide:false
 }
 
 /**
@@ -96,22 +98,26 @@ function loadContentBody(menu,obj){
 	case "allComment":
 		url="/admin/commentManage.html";
 		data="全部评论";
+		commentMana.commentStatus="all";
 		initOpt=commentMana;
 		break;
 	case "pendingComment":
 		url="/admin/commentManage.html";
 		data="待审评论";
-		initOpt="";
+		commentMana.commentStatus="audit";
+		initOpt=commentMana;
 		break;
 	case "approvalComment":
 		url="/admin/commentManage.html";
 		data="已批准评论";
-		initOpt="";
+		commentMana.commentStatus="approval";
+		initOpt=commentMana;
 		break;
 	case "spamComment":
 		url="/admin/commentManage.html";
 		data="垃圾评论";
-		initOpt="";
+		commentMana.commentStatus="spam";
+		initOpt=commentMana;
 		break;
 	}
 	contentBodyLoad(data,url,initOpt);

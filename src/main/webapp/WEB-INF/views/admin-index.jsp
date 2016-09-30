@@ -531,26 +531,26 @@
                                     <li class="nav-item  ">
                                         <a href="javascript:;" class="nav-link " onclick="loadContentBody('allComment',this)">
                                             <span class="title">全部</span>
-                                            <span class="badge badge-info">999999999</span>
+                                            <span id="sumComment" class="badge badge-info">${commentCount.sum }</span>
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
                                         <a href="javascript:;" class="nav-link " onclick="loadContentBody('pendingComment',this)">
                                             <span class="title">待审</span>
                                             <!-- <span class="badge badge-primary">2</span> -->
-                                            <span class="badge badge-warning">2</span>
+                                            <span id="sumAudit" class="badge badge-warning">${commentCount.sumAudit }</span>
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
                                         <a href="javascript:;" class="nav-link " onclick="loadContentBody('approvalComment',this)">
                                             <span class="title">已批准</span>
-                                            <span class="badge badge-success">6</span>
+                                            <span id="sumApproval" class="badge badge-success">${commentCount.sumApproval }</span>
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
                                         <a href="javascript:;" class="nav-link " onclick="loadContentBody('spamComment',this)">
                                             <span class="title">垃圾</span>
-                                            <span class="badge badge-danger">6</span>
+                                            <span id="sumSpam" class="badge badge-danger">${commentCount.sumSpam }</span>
                                         </a>
                                     </li>
                                 </ul>

@@ -458,7 +458,7 @@ var TableDatatablesManaged = function () {
      * 评论列表
      * @param serverSide 是否服务器模式true,false
      */
-    var commentTables = function (serverSide) {
+    var commentTables = function (serverSide,commentStatus) {
     	table = $('#commentTables').DataTable({
     		"language": language,
             "processing": false, //关闭加载提示
@@ -521,10 +521,18 @@ var TableDatatablesManaged = function () {
              ],
              
              "ajax" : function(data, callback, settings){
-            	 
+            	
             	var url="/admin/comment/query/all";
              	if(serverSide){
              		url="/admin/comment/query";
+             	}else if(commentStatus=="audit"){ //所有待审评论
+             		url="/admin/comment/query/audit";
+             	}else if(commentStatus=="approval"){  //所有批准评论
+             		url="/admin/comment/query/approval";
+             	}else if(commentStatus=="spam"){ //所有垃圾评论
+             		url="/admin/comment/query/spam";
+             	}else if(commentStatus=="all"){
+             		url="/admin/comment/query/all";
              	}
              	loadData("blockui_commentTables",url,serverSide,data,callback);
              	
@@ -544,6 +552,8 @@ var TableDatatablesManaged = function () {
              	}
              	if(data.commentSpam==0){
              		stateHtml +='<span class="label label-sm label-danger" style="cursor:pointer;" onclick="operationComment(\'spam\',1,'+id+')">垃圾</span>';
+             	}else{
+             		stateHtml +='<span class="label label-sm label-primary" style="cursor:pointer;" onclick="operationComment(\'spam\',0,'+id+')">恢复</span>';
              	}
              	stateHtml += '<span class="label label-sm label-info" style="cursor:pointer;" onclick="operationComment(\'delete\',1,'+id+')">删除</span>';
              	//设置@谁 样式
@@ -565,11 +575,11 @@ var TableDatatablesManaged = function () {
             if (!jQuery().dataTable) {
                 return;
             }
-            if(tableType=="article"){
-            	articleTables(false); //false客户端模式加载
+            if(tableType.dataTablesType=="article"){
+            	articleTables(tableType.serverSide); //false客户端模式加载
             	
-            }else if(tableType=="comment"){
-            	commentTables(false);
+            }else if(tableType.dataTablesType=="comment"){
+            	commentTables(tableType.serverSide,tableType.commentStatus);
             }
             linenum();//生成行号
         }
