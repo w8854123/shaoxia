@@ -14,9 +14,9 @@ public class ArticleComment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long commentId;
-	//文章主表id
+	//对应文章主表id
 	private String articleId;
-	//文章标题
+	//对应文章标题
 	private String articleTitle;
 	//评论内容
 	private String commentContent;

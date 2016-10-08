@@ -24,20 +24,12 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value="/{page}.html",method=RequestMethod.GET)
-	public ModelAndView toPage(@PathVariable("page")String page,String type){
+	public ModelAndView toPage(@PathVariable("page")String page){
 		ModelAndView mav=new ModelAndView(page);
-		CommentData commentData=commentService.queryCommentCount();
-		mav.addObject("commentCount", commentData);
-//		if(type!=null){
-//			try {
-//				type=new String(type.getBytes(),"UTF-8");
-//			} catch (UnsupportedEncodingException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-		
-			mav.addObject("type", type);
-//		}
+		if("admin-index".equals(page)){
+			CommentData commentData=commentService.queryCommentCount();
+			mav.addObject("commentCount", commentData);
+		}
 		return mav;
 	}
 }
