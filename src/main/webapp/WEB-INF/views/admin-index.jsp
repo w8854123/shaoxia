@@ -563,9 +563,8 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item  ">
-                                        <a href="form_controls.html" class="nav-link ">
-                                            <span class="title">Bootstrap Form
-                                                <br>Controls</span>
+                                        <a href="javascript:;" class="nav-link ">
+                                            <span class="title">常规</span>
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
