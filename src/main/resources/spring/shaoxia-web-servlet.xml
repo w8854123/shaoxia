@@ -21,7 +21,14 @@
 		<!-- 后缀 -->
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-
+	
+	<!-- 配置文件上传解析器 -->
+	<!-- 需要设置id=multipartResolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="52428800"></property>
+	</bean>
+	
 	<!-- 配置拦截器 -->
 	<mvc:interceptors>
 		<!-- 校验用户是否登陆，如果没有登陆，跳转到登陆界面 -->

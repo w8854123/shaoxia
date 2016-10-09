@@ -27,7 +27,14 @@ var ComponentsEditors = function () {
         	         ['table', ['table']],
         	         ['insert', ['link', 'picture', 'video','hr']],
         	         ['view', ['fullscreen', 'codeview', 'help']]
-        	]
+        	],
+        	callbacks: {
+        	    onImageUpload: function(files) {
+        	    	console.info(files);
+        	      // upload image to server and create imgNode...
+//        	      $summernote.summernote('insertNode', imgNode);
+        	    }
+        	}
         });
         
         $('#abstr').summernote({
