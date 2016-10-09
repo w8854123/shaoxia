@@ -13,6 +13,12 @@ public interface OptionsMapper extends Mapper<Options>{
 	 * @param list
 	 * @return
 	 */
-	int updateBatchOptionsByIdSelective(List<Options> list);
+	void updateBatchOptionsByIdSelective(List<Options> list);
+	
+	/**
+	 * 批量插入
+	 * @param list
+	 */
+	void insertBatchOptions(List<Options> list);
 	
 }

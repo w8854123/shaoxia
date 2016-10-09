@@ -5,7 +5,7 @@
 	
 	<update id="updateBatchOptionsByIdSelective" parameterType="java.util.List">
 		<foreach collection="list" item="option" index="index" open="" close="" separator=";">
-			update shaoxia_options 
+			UPDATE shaoxia_options 
 			<set>
 				<if test="option.optionName!=null">
 					option_name=${option.optionName}
@@ -17,8 +17,14 @@
 					autoload=${option.autoload}
 				</if>
 			</set>
-			where option_id = ${option.optionId}
+			WHERE option_id = ${option.optionId}
 		</foreach>
 	</update>
+	
+	<insert id="insertBatchOptions" parameterType="java.util.List">
+		<foreach collection="list" item="option" index="index" separator=";">
+			insert into shaoxia_options values(null,${option.optionName},${option.optionValue},${option.autoload})
+		</foreach>
+	</insert>
 	
 </mapper>
