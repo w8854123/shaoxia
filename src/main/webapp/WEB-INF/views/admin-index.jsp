@@ -563,7 +563,7 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item  ">
-                                        <a href="javascript:;" class="nav-link ">
+                                        <a href="javascript:;" class="nav-link " onclick="loadContentBody('generalSettings',this)">
                                             <span class="title">常规</span>
                                         </a>
                                     </li>
@@ -1206,7 +1206,7 @@
         
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+        <!-- <script src="/layouts/layout/scripts/demo.min.js" type="text/javascript"></script> -->
         <script src="/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
         <script src="/js/admin-index/admin-index.js" type="text/javascript"></script>

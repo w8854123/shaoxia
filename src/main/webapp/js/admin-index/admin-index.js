@@ -69,6 +69,12 @@ var commentMana={
 		dataTablesType:"comment",
 		serverSide:false
 }
+/**
+ * 常规设置 初始化组件
+ */
+var generalSetMana={
+		
+}
 
 /**
  * 加载contentBody
@@ -119,6 +125,10 @@ function loadContentBody(menu,obj){
 		commentMana.commentStatus="spam";
 		initOpt=commentMana;
 		break;
+	case "generalSettings":
+		url="/admin/generalSettings.html";
+		data="常规设置";
+		initOpt=generalSetMana;
 	}
 	contentBodyLoad(data,url,initOpt);
 }
