@@ -8,22 +8,22 @@
 			UPDATE shaoxia_options 
 			<set>
 				<if test="option.optionName!=null">
-					option_name=${option.optionName}
+					option_name=#{option.optionName}
 				</if>
 				<if test="option.optionValue!=null">
-					option_value=${option.optionValue}
+					option_value=#{option.optionValue}
 				</if>
 				<if test="option.autoload!=null">
-					autoload=${option.autoload}
+					autoload=#{option.autoload}
 				</if>
 			</set>
-			WHERE option_id = ${option.optionId}
+			WHERE option_id = #{option.optionId}
 		</foreach>
 	</update>
 	
 	<insert id="insertBatchOptions" parameterType="java.util.List">
 		<foreach collection="list" item="option" index="index" separator=";">
-			INSERT INTO shaoxia_options VALUES(null,${option.optionName},${option.optionValue},${option.autoload})
+			INSERT INTO shaoxia_options VALUES(null,#{option.optionName},#{option.optionValue},#{option.autoload})
 		</foreach>
 	</insert>
 	

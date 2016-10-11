@@ -1,6 +1,10 @@
+/**
+ * 带进度条的按钮
+ */
 var buttons={
-		draftButton:null,
-		publishButton:null
+		draftButton:null, //文章存草稿
+		publishButton:null, //发布文章
+		generalSettButton:null //常规设置 保存更改
 }
 /**
  * 初始化组件
@@ -24,8 +28,15 @@ var initOption={
 			}
 			if(initOpt.uiButtons){	//初始化UI按钮
 //				UIButtons.init();
-				buttons.draftButton=Ladda.create( document.querySelector( '.draft' ) );
-				buttons.publishButton=Ladda.create( document.querySelector( '.publish' ) );
+				if(document.querySelector( '.draft' )){
+					buttons.draftButton=Ladda.create( document.querySelector( '.draft' ) ); 
+				}
+				if(document.querySelector( '.publish' )){
+					buttons.publishButton=Ladda.create( document.querySelector( '.publish' ) ); 
+				}
+				if(document.querySelector('.generalSett')){
+					buttons.generalSettButton=Ladda.create( document.querySelector('.generalSett'));
+				}
 				
 			}
 			if(initOpt.bootstrapSwitch){	//初始化Bootstrap开关
@@ -73,7 +84,7 @@ var commentMana={
  * 常规设置 初始化组件
  */
 var generalSetMana={
-		
+		uiButtons:true
 }
 
 /**

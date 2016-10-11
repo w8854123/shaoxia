@@ -1213,6 +1213,7 @@
         <script src="/js/common/datatables.js" type="text/javascript"></script>
         <script src="/js/admin-article/article.js" type="text/javascript"></script>
         <script src="/js/admin-comment/comment.js" type="text/javascript"></script>
+        <script src="/js/admin-settings/settings.js" type="text/javascript"></script>
         
     </body>
 </html>
