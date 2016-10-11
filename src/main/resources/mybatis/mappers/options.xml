@@ -22,8 +22,9 @@
 	</update>
 	
 	<insert id="insertBatchOptions" parameterType="java.util.List">
-		<foreach collection="list" item="option" index="index" separator=";">
-			INSERT INTO shaoxia_options VALUES(null,#{option.optionName},#{option.optionValue},#{option.autoload})
+		INSERT INTO shaoxia_options VALUES
+		<foreach collection="list" item="option" index="index" separator=",">
+			(null,#{option.optionName},#{option.optionValue},#{option.autoload})
 		</foreach>
 	</insert>
 	
