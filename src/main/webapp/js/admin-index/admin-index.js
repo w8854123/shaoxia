@@ -154,12 +154,8 @@ function contentBodyLoad(data,url,initOpt){
 	$("#contentBody").load(url,function(response){
 		$("#twoMenuName").html(data);
 		initOption.init(initOpt);
-		if(data=="编辑文章" && !response){
-			$("#articleTitle").val(response.articleId);
-			$('#content').summernote('code', response.articleContent);
-			$("#articleTags").val(response.articleTags);
-			$('#abstr').summernote('code', response.articleAbstract);
-			$(".replyCheckbox").bootstrapSwitch('state', response.commentType==0?true:false);
+		if(data=="常规设置"){
+			getGeneralSett();  //读取配置选项
 		}
 	});
 }

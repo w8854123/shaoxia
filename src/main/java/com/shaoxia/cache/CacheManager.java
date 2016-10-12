@@ -18,9 +18,9 @@ public class CacheManager {
 	public static final Logger LOGGER = LoggerFactory.getLogger(CacheManager.class);
 	
 	//ConcurrentHashMap是线程安全的，HashMap不是线程安全的
-	private static final Map<String, String> CACHEMAP=new ConcurrentHashMap<String, String>();
+	private static final Map<String, Object> CACHEMAP=new ConcurrentHashMap<String, Object>();
 
-	public static Map<String, String> getCachemap() {
+	public static Map<String, Object> getCachemap() {
 		return CACHEMAP;
 	}
 
@@ -37,7 +37,7 @@ public class CacheManager {
 	 * @param value
 	 * @return 
 	 */
-	public boolean putCache(String key,String value){
+	public boolean putCache(String key,Object value){
 		if(key!=null && !CACHEMAP.containsKey(key)){
 			CACHEMAP.put(key, value);
 			LOGGER.info("缓存设置成功： key = {} , value = {} ",key,value);
@@ -52,7 +52,7 @@ public class CacheManager {
 	 * @param key
 	 * @return
 	 */
-	public String getValueByKey(String key){
+	public Object getValueByKey(String key){
 		if(key!=null){
 			return CACHEMAP.get(key);
 		}
@@ -64,7 +64,7 @@ public class CacheManager {
 	 * @param key
 	 * @param value
 	 */
-	public boolean updateValueByKey(String key,String value){
+	public boolean updateValueByKey(String key,Object value){
 		removeCacheByKey(key);
 		return putCache(key,value);
 	}

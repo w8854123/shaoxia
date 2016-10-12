@@ -1,5 +1,7 @@
 package com.shaoxia.controller.admin;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.shaoxia.bean.ListOption;
+import com.shaoxia.pojo.Options;
 import com.shaoxia.service.OptionsService;
 
 /**
@@ -25,6 +28,21 @@ public class OptionsController {
 
 	@Autowired
 	private OptionsService optionsService;
+	
+	/**
+	 * 获取所有设置选项
+	 * @return
+	 */
+	@RequestMapping(value="/query/all",method=RequestMethod.GET)
+	public ResponseEntity<List<Options>> queryAll(){
+		try {
+			List<Options> list=optionsService.queryAll();
+			return ResponseEntity.ok(list);
+		} catch (Exception e) {
+			LOGGER.error("获取所有设置选项异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
 	
 	/**
 	 * 批量插入设置项
