@@ -48,6 +48,11 @@ var initOption={
 					TableDatatablesManaged.init(initOpt);
 				}
 			}
+			if(initOpt.touchSpin){
+				$(".touchSpin").TouchSpin({
+		            verticalbuttons: true
+		        });
+			}
 		}
 }
 
@@ -85,6 +90,18 @@ var commentMana={
  */
 var generalSetMana={
 		uiButtons:true
+}
+/**
+ * 媒体库设置 初始化组件
+ */
+var mediaSetMana={
+		touchSpin:true
+}
+/**
+ * 系统参数设置 初始化组件
+ */
+var systemSetMana={
+		
 }
 
 /**
@@ -140,6 +157,17 @@ function loadContentBody(menu,obj){
 		url="/admin/generalSettings.html";
 		data="常规设置";
 		initOpt=generalSetMana;
+		break;
+	case "mediaSettings":
+		url="/admin/mediaSettings.html";
+		data="媒体库设置";
+		initOpt=mediaSetMana;
+		break;
+	case "systemSettings":
+		url="/admin/systemSettings.html";
+		data="参数设置";
+		initOpt=systemSetMana;
+		break;
 	}
 	contentBodyLoad(data,url,initOpt);
 }

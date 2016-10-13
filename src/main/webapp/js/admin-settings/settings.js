@@ -1,13 +1,17 @@
-
+/**
+ * 常规设置
+ */
 var generalSettings={
-		siteTitle:null,   //站点标题
-		subtitle:null,   //副标题
-		webUrl:null,  //站点地址
-		metaKeywords:null,  //站点的关键词
-		metaDescription:null,  //站点的描述
-		htmlHead:null,    //htmlHead
-		announcement:null,  //公告
-		pageFooter:null  //页脚
+		siteTitle:0,   //站点标题
+		subtitle:1,   //副标题
+		webUrl:2,  //站点地址
+		metaKeywords:3,  //站点的关键词
+		metaDescription:4,  //站点的描述
+		htmlHead:5,    //htmlHead
+		announcement:6,  //公告
+		pageFooter:7,  //页脚
+		
+		length:8   //总共8个选项
 }
 
 /**
@@ -53,54 +57,34 @@ function getGeneralSett(){
 		data:"",
 		dataType:"json",
 		success:function(src,textStatus) {
-			for(var i=0;i<src.length;i++){
-				if(src[i].optionName=="siteTitle"){
-					$("[name='listOption[0].optionId']").val(src[i].optionId);
-					$("[name='listOption[0].autoload']").val(src[i].autoload);
-					$("[name='listOption[0].optionValue']").val(src[i].optionValue);
-				}
-				if(src[i].optionName=="subtitle"){
-					$("[name='listOption[1].optionId']").val(src[i].optionId);
-					$("[name='listOption[1].autoload']").val(src[i].autoload);
-					$("[name='listOption[1].optionValue']").val(src[i].optionValue);
-				}
-				if(src[i].optionName=="webUrl"){
-					$("[name='listOption[2].optionId']").val(src[i].optionId);
-					$("[name='listOption[2].autoload']").val(src[i].autoload);
-					$("[name='listOption[2].optionValue']").val(src[i].optionValue);
-				}
-				if(src[i].optionName=="metaKeywords"){
-					$("[name='listOption[3].optionId']").val(src[i].optionId);
-					$("[name='listOption[3].autoload']").val(src[i].autoload);
-					$("[name='listOption[3].optionValue']").val(src[i].optionValue);
-				}
-				if(src[i].optionName=="metaDescription"){
-					$("[name='listOption[4].optionId']").val(src[i].optionId);
-					$("[name='listOption[4].autoload']").val(src[i].autoload);
-					$("[name='listOption[4].optionValue']").val(src[i].optionValue);
-				}
-				if(src[i].optionName=="htmlHead"){
-					$("[name='listOption[5].optionId']").val(src[i].optionId);
-					$("[name='listOption[5].autoload']").val(src[i].autoload);
-					$("[name='listOption[5].optionValue']").val(src[i].optionValue);
-				}
-				if(src[i].optionName=="announcement"){
-					$("[name='listOption[6].optionId']").val(src[i].optionId);
-					$("[name='listOption[6].autoload']").val(src[i].autoload);
-					$("[name='listOption[6].optionValue']").val(src[i].optionValue);
-				}
-				if(src[i].optionName=="pageFooter"){
-					$("[name='listOption[7].optionId']").val(src[i].optionId);
-					$("[name='listOption[7].autoload']").val(src[i].autoload);
-					$("[name='listOption[7].optionValue']").val(src[i].optionValue);
-				}
-				
-				App.unblockUI('#generalSetForm');
-			}
+			setTheValue(src,generalSettings);
+			App.unblockUI('#generalSetForm');
 		},
 		error:function(XMLHttpRequest){
 			App.unblockUI('#generalSetForm');
 			toastr["error"]("读取常规设置选项失败!", XMLHttpRequest.status);
 		}
 	});
+}
+
+/**
+ * 将配置数据设置到页面中
+ * @param src
+ * @param obj 页面设置项
+ */
+function setTheValue(src,obj){
+	var n=0;
+	for(var i=0;i<src.length;i++){
+		if(n==obj.length){
+			return;
+		}
+		for(var name in obj){
+			if(src[i].optionName==name){
+				$("[name='listOption["+obj[name]+"].optionId']").val(src[i].optionId);
+				$("[name='listOption["+obj[name]+"].autoload']").val(src[i].autoload);
+				$("[name='listOption["+obj[name]+"].optionValue']").val(src[i].optionValue);
+				n++;
+			}
+		}
+	}
 }

@@ -16,6 +16,12 @@
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
         <meta content="" name="author" />
+        <!-- BEGIN PAGE FIRST SCRIPTS -->
+        <script src="/global/plugins/pace/pace.min.js" type="text/javascript"></script>
+        <!-- END PAGE FIRST SCRIPTS -->
+        <!-- BEGIN PAGE TOP STYLES -->
+        <link href="/global/plugins/pace/themes/pace-theme-flash.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE TOP STYLES -->
         <!-- BEGIN 全局强制样式 -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -29,6 +35,7 @@
         <link href="/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
         <link href="/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
         <link href="/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN 全局主题样式 -->
         <link href="/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -568,9 +575,38 @@
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
-                                        <a href="form_controls_md.html" class="nav-link ">
-                                            <span class="title">Material Design
-                                                <br>Form Controls</span>
+                                        <a href="javascript:;" class="nav-link ">
+                                            <span class="title">阅读</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link ">
+                                            <span class="title">撰写</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link ">
+                                            <span class="title">讨论</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link " onclick="loadContentBody('mediaSettings',this)">
+                                            <span class="title">媒体库</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link ">
+                                            <span class="title">用户</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link ">
+                                            <span class="title">固定链接</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link " onclick="loadContentBody('systemSettings',this)">
+                                            <span class="title">参数</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -1189,6 +1225,7 @@
         <script src="/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
         <script src="/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
         <!-- <script src="/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script> -->
+        <script src="/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="/global/scripts/app.min.js" type="text/javascript"></script>
@@ -1202,6 +1239,7 @@
         <!-- <script src="/pages/scripts/table-datatables-managed.js" type="text/javascript"></script> -->
         <!-- <script src="/pages/scripts/ui-bootbox.js" type="text/javascript"></script> -->
         <!-- <script src="/pages/scripts/components-bootstrap-maxlength.js" type="text/javascript"></script> -->
+        <!-- <script src="/pages/scripts/components-bootstrap-touchspin.js" type="text/javascript"></script> -->
         <!-- END PAGE LEVEL SCRIPTS -->
         
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
