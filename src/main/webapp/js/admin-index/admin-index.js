@@ -118,9 +118,7 @@ function loadContentBody(menu,obj){
 	$("#contentBody").empty();//清理界面
 	var url="/admin/articleEdit.html"; 
 	var data="";
-	var initOpt={
-			
-	};
+	var initOpt={};
 	switch(menu){
 	case "newArticle":
 		url="/admin/articleEdit.html";
