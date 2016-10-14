@@ -13,39 +13,52 @@ var generalSettings={
 		
 		length:8   //总共8个选项
 }
+/**
+ * 媒体库设置
+ */
+var mediaSettings={
+		thumbnailWidth:0,   //缩略图宽度
+		thumbnailHight:1,   //缩略图高度
+		qiniuAccessKey:2,   //七牛AccessKey
+		qiniuSecretKey:3,   //七牛SecretKey
+		qiniuHOST:4,        //七牛回源 HOST
+		qiniubucket:5,      //七牛bucket
+		
+		length:6            //总共6个选项
+}
 
 /**
  * 批量插入或更新常规设置选项
  * @param operation 操作类型update：更新；默认插入
  */
-function saveGeneralSett(operation){
+function saveSett(operation){
 	var url="/admin/options/insertBatch";
 	var type="POST";
 	if(operation=="update"){
 		url="/admin/options/updateBatch";
 		type="PUT";
 	}
-	buttons.generalSettButton.start();  //开启按钮进度条
+	buttons.settButton.start();  //开启按钮进度条
 	$.ajax({
 		url:url,
 		type:type,
 		data:$("#generalSetForm").serialize(),
 		dataType:"text",
 		success:function(src,textStatus) {
-			buttons.generalSettButton.stop(); //关闭按钮进度条
+			buttons.settButton.stop(); //关闭按钮进度条
 			toastr["success"]("操作成功！", "温馨提示");
 		},
 		error:function(XMLHttpRequest){
-			buttons.generalSettButton.stop();
+			buttons.settButton.stop();
 			toastr["error"]("保存常规设置选项失败!", XMLHttpRequest.status);
 		}
 	});
 }
 
 /**
- * 获取常规设置选项
+ * 获取设置选项
  */
-function getGeneralSett(){
+function getSett(obj){
 	//设置进度条
  	App.blockUI({
          target: '#generalSetForm',
@@ -57,12 +70,12 @@ function getGeneralSett(){
 		data:"",
 		dataType:"json",
 		success:function(src,textStatus) {
-			setTheValue(src,generalSettings);
+			setTheValue(src,obj);
 			App.unblockUI('#generalSetForm');
 		},
 		error:function(XMLHttpRequest){
 			App.unblockUI('#generalSetForm');
-			toastr["error"]("读取常规设置选项失败!", XMLHttpRequest.status);
+			toastr["error"]("读取设置选项失败!", XMLHttpRequest.status);
 		}
 	});
 }

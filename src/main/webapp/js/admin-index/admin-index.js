@@ -4,7 +4,7 @@
 var buttons={
 		draftButton:null, //文章存草稿
 		publishButton:null, //发布文章
-		generalSettButton:null //常规设置 保存更改
+		settButton:null //设置 保存更改
 }
 /**
  * 初始化组件
@@ -34,8 +34,8 @@ var initOption={
 				if(document.querySelector( '.publish' )){
 					buttons.publishButton=Ladda.create( document.querySelector( '.publish' ) ); 
 				}
-				if(document.querySelector('.generalSett')){
-					buttons.generalSettButton=Ladda.create( document.querySelector('.generalSett'));
+				if(document.querySelector('.Settings')){
+					buttons.settButton=Ladda.create( document.querySelector('.Settings'));
 				}
 				
 			}
@@ -50,6 +50,8 @@ var initOption={
 			}
 			if(initOpt.touchSpin){
 				$(".touchSpin").TouchSpin({
+					min: 0,
+	                max: 1000,
 		            verticalbuttons: true
 		        });
 			}
@@ -95,6 +97,7 @@ var generalSetMana={
  * 媒体库设置 初始化组件
  */
 var mediaSetMana={
+		uiButtons:true,
 		touchSpin:true
 }
 /**
@@ -183,7 +186,10 @@ function contentBodyLoad(data,url,initOpt){
 		$("#twoMenuName").html(data);
 		initOption.init(initOpt);
 		if(data=="常规设置"){
-			getGeneralSett();  //读取配置选项
+			getSett(generalSettings);  //读取配置选项
+		}
+		if(data=="媒体库设置"){
+			getSett(mediaSettings);
 		}
 	});
 }

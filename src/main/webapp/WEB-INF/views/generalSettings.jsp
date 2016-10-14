@@ -20,7 +20,7 @@
 			</a> <a class="btn btn-circle btn-icon-only red" href="javascript:;"> <i class="icon-trash"></i>
 			</a> <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
 			</a> -->
-			<button type="button" data-loading-text="正在设置..." onclick="saveGeneralSett('update')" class="btn green mt-ladda-btn ladda-button generalSett" data-style="zoom-in">
+			<button type="button" data-loading-text="正在设置..." onclick="saveSett('update')" class="btn green mt-ladda-btn ladda-button Settings" data-style="zoom-in">
 				<i class="fa fa-save"></i>
 				<span class="ladda-label">保存更改</span>
 			</button>
