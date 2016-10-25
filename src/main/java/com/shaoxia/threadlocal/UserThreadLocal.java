@@ -27,6 +27,6 @@ public class UserThreadLocal {
      * 移除 
      */  
     public static void remove(){  
-    	threadLocal.remove();  
+    	threadLocal.remove();
     }  
 }

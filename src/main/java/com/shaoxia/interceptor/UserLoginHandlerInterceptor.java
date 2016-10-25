@@ -53,6 +53,7 @@ public class UserLoginHandlerInterceptor implements HandlerInterceptor{
 		String ticket = CookieUtils.getCookieValue(request, userService.getTIAOXIAOPI_TICKET_COOKIE());
 		//不存在ticket则用户没有登录,跳转倒登录页面
 		if(StringUtils.isBlank(ticket)){
+			UserThreadLocal.remove();//清空
 			response.sendRedirect("/login.html");
 			return false;
 		}
@@ -60,6 +61,7 @@ public class UserLoginHandlerInterceptor implements HandlerInterceptor{
 		User user=userService.queryUserByTicket(ticket);
 		//已登录
 		if(user!=null){
+			UserThreadLocal.remove();//清空
 			//将登录用户的信息存入ThreadLocal
 			UserThreadLocal.set(user);
 			return true;
