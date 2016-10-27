@@ -29,6 +29,8 @@ public class User {
 	
 	private String url;
 	
+	private String avatars;
+	
 	private Integer userType;
 	
 	@JsonIgnore
@@ -92,6 +94,14 @@ public class User {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getAvatars() {
+		return avatars;
+	}
+
+	public void setAvatars(String avatars) {
+		this.avatars = avatars;
 	}
 
 	public Integer getUserType() {
