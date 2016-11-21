@@ -292,7 +292,7 @@ var TableDatatablesManaged = function () {
     	table = $('#articleTables').DataTable({
             "language": language,
             "processing": false, //关闭加载提示
-            "serverSide": serverSide, //关闭服务器模式
+            "serverSide": serverSide, //服务器模式选择
             "bStateSave": false, // save datatable state(pagination, sort, etc) in cookie.
             "searching": true,//是否允许Datatables开启本地搜索
             "searchDelay":800,//设置搜索延迟时间单位ms

@@ -28,7 +28,7 @@ public class CommentController {
 	 * 统计各项评论数
 	 * @return
 	 */
-	@RequestMapping(value="/query/count",method=RequestMethod.GET)
+	@RequestMapping(value="/query/count/everyItem",method=RequestMethod.GET)
 	public ResponseEntity<CommentData> queryCommentCount(){
 		try {
 			CommentData commentData=commentService.queryCommentCount();
@@ -40,9 +40,25 @@ public class CommentController {
 	}
 	
 	/**
-	 * 获取所有评论 除垃圾评论外
+	 * 根据条件查询评论
 	 * @return
 	 */
+	@RequestMapping(value="/query/{param}",method=RequestMethod.GET)
+	public ResponseEntity<DataTablesResult<ArticleComment>> queryCommentByCondition(@PathVariable("param")String param){
+		try {
+			DataTablesResult<ArticleComment> dtResult=commentService.queryCommentByCondition(param);
+			return ResponseEntity.ok(dtResult); //200
+		} catch (Exception e) {
+			LOGGER.info("根据条件查询评论,输入参数： param = {} ",param);
+			LOGGER.error("查询评论异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); //500
+	}
+	
+/*	*//**
+	 * 获取所有评论 除垃圾评论外
+	 * @return
+	 *//*
 	@RequestMapping(value="/query/all",method=RequestMethod.GET)
 	public ResponseEntity<DataTablesResult<ArticleComment>> queryAllComment(){
 		try {
@@ -54,10 +70,10 @@ public class CommentController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); //500
 	}
 	
-	/**
+	*//**
 	 * 查询所有待审评论
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value="/query/audit",method=RequestMethod.GET)
 	public ResponseEntity<DataTablesResult<ArticleComment>> queryCommentOfAudit(){
 		try {
@@ -69,10 +85,10 @@ public class CommentController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 	}
 	
-	/**
+	*//**
 	 * 查询所有批准评论
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value="/query/approval",method=RequestMethod.GET)
 	public ResponseEntity<DataTablesResult<ArticleComment>> queryCommentOfApproval(){
 		try {
@@ -84,10 +100,10 @@ public class CommentController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 	}
 	
-	/**
+	*//**
 	 * 查询所有垃圾评论
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value="/query/spam",method=RequestMethod.GET)
 	public ResponseEntity<DataTablesResult<ArticleComment>> queryCommentOfSpam(){
 		try {
@@ -97,7 +113,7 @@ public class CommentController {
 			LOGGER.error("查询所有垃圾评论异常,异常信息:", e);
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-	}
+	}*/
 	
 	/**
 	 * 根据id更新评论

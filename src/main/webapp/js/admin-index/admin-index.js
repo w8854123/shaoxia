@@ -106,6 +106,12 @@ var mediaSetMana={
 var systemSetMana={
 		
 }
+/**
+ * 阅读参数设置 初始化组件
+ */
+var readSetMana={
+		
+}
 
 /**
  * 加载contentBody
@@ -168,6 +174,11 @@ function loadContentBody(menu,obj){
 		url="/admin/systemSettings.html";
 		data="参数设置";
 		initOpt=systemSetMana;
+		break;
+	case "readSettings":
+		url="/admin/readSettings.html";
+		data="阅读设置";
+		initOpt=readSetMana;
 		break;
 	}
 	contentBodyLoad(data,url,initOpt);

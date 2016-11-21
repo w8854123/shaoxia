@@ -8,7 +8,7 @@
 </div>
 <!-- END PAGE BAR -->
 <!-- BEGIN SAMPLE FORM PORTLET-->
-<h2>开发中....</h2>
+<h2>阅读设置开发中....</h2>
 <div class="portlet light bordered">
 	<div class="portlet-title">
 <!-- 		<div class="caption font-green-haze">

@@ -575,7 +575,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
-                                        <a href="javascript:;" class="nav-link ">
+                                        <a href="javascript:;" class="nav-link " onclick="loadContentBody('readSettings',this)">
                                             <span class="title">阅读</span>
                                         </a>
                                     </li>
