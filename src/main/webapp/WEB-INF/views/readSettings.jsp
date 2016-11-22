@@ -8,19 +8,11 @@
 </div>
 <!-- END PAGE BAR -->
 <!-- BEGIN SAMPLE FORM PORTLET-->
-<h2>阅读设置开发中....</h2>
+<h2></h2>
 <div class="portlet light bordered">
 	<div class="portlet-title">
-<!-- 		<div class="caption font-green-haze">
-			<i class="icon-settings font-green-haze"></i> <span class="caption-subject bold uppercase"> Horizontal Form</span>
-		</div> -->
 		<div class="actions">
-<!-- 			<a class="btn btn-circle btn-icon-only blue" href="javascript:;"> <i class="icon-cloud-upload"></i>
-			</a> <a class="btn btn-circle btn-icon-only green" href="javascript:;"> <i class="icon-wrench"></i>
-			</a> <a class="btn btn-circle btn-icon-only red" href="javascript:;"> <i class="icon-trash"></i>
-			</a> <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
-			</a> -->
-			<button type="button" data-loading-text="正在设置..." onclick="saveGeneralSett('update')" class="btn green mt-ladda-btn ladda-button generalSett" data-style="zoom-in">
+			<button type="button" data-loading-text="正在设置..." onclick="saveSett('update')" class="btn green mt-ladda-btn ladda-button Settings" data-style="zoom-in">
 				<i class="fa fa-save"></i>
 				<span class="ladda-label">保存更改</span>
 			</button>
@@ -30,99 +22,91 @@
 		<form role="form" class="form-horizontal" id="generalSetForm">
 			<div class="form-body">
 				<div class="form-group">
-					<label class="col-md-3 control-label">编辑器</label>
-					<div class="col-md-5">
-                        <select class="form-control">
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
-                            <option>Option 4</option>
-                            <option>Option 5</option>
+					<label class="col-md-4 control-label">文章列表显示方式：</label>
+					<input type="hidden" name="listOption[0].optionId">
+					<input type="hidden" name="listOption[0].optionName" value="articleListDisplay">
+					<input type="hidden" name="listOption[0].autoload">
+					<div class="col-md-4">
+                        <select class="form-control" name="listOption[0].optionValue">
+                            <option value="onlyTitle">仅标题</option>
+                            <option value="titleAndAbstract">标题+摘要</option>
+                            <option value="titleAndBody">标题+正文</option>
                         </select>
                     </div>
 				</div>
-				<div class="form-group form-md-line-input">
-					<label class="col-md-2 control-label" for="subtitle">副标题：</label>
-					<div class="col-md-10">
-						<input type="hidden" name="listOption[1].optionId">
-						<input type="hidden" name="listOption[1].optionName" value="subtitle">
-						<input type="hidden" name="listOption[1].autoload">
-						<input type="text" class="form-control" id="subtitle" name="listOption[1].optionValue">
-						<div class="form-control-focus"></div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">最新评论显示数目：</label>
+					<input type="hidden" name="listOption[1].optionId">
+					<input type="hidden" name="listOption[1].optionName" value="latestCommentsShowsNumber">
+					<input type="hidden" name="listOption[1].autoload">
+					<div class="col-md-4">
+						<input type="text" name="listOption[1].optionValue" class="touchSpin">
 					</div>
 				</div>
-				<div class="form-group form-md-line-input">
-					<label class="col-md-2 control-label" for="webUrl">站点地址：</label>
-					<div class="col-md-10">
-						<input type="hidden" name="listOption[2].optionId">
-						<input type="hidden" name="listOption[2].optionName" value="webUrl">
-						<input type="hidden" name="listOption[2].autoload">
-						<input type="text" class="form-control" id="webUrl" name="listOption[2].optionValue">
-						<div class="form-control-focus"></div>
-						<span class="help-block">http://xxx.xxx.xxx</span>
+				<div class="form-group">
+					<label class="col-md-4 control-label">评论最多文章显示数目：</label>
+					<input type="hidden" name="listOption[2].optionId">
+					<input type="hidden" name="listOption[2].optionName" value="mostCommentedPostsNumber">
+					<input type="hidden" name="listOption[2].autoload">
+					<div class="col-md-4">
+						<input type="text" name="listOption[2].optionValue" class="touchSpin">
 					</div>
 				</div>
-				<div class="form-group form-md-line-input">
-					<label class="col-md-2 control-label" for="metaKeywords">Meta Keywords:</label>
-					<div class="col-md-10">
-						<input type="hidden" name="listOption[3].optionId">
-						<input type="hidden" name="listOption[3].optionName" value="metaKeywords">
-						<input type="hidden" name="listOption[3].autoload">
-						<input type="text" class="form-control" id="metaKeywords" name="listOption[3].optionValue">
-						<div class="form-control-focus"></div>
-						<span class="help-block">填入站点的关键词,多个词之间用英文逗号隔开</span>
+				<div class="form-group">
+					<label class="col-md-4 control-label">访问最多文章显示数目：</label>
+					<input type="hidden" name="listOption[3].optionId">
+					<input type="hidden" name="listOption[3].optionName" value="numberOfArticlesMostRead">
+					<input type="hidden" name="listOption[3].autoload">
+					<div class="col-md-4">
+						<input type="text" name="listOption[3].optionValue" class="touchSpin">
 					</div>
 				</div>
-				<div class="form-group form-md-line-input">
-					<label class="col-md-2 control-label" for="metaDescription">Meta Description:</label>
-					<div class="col-md-10">
-						<input type="hidden" name="listOption[4].optionId">
-						<input type="hidden" name="listOption[4].optionName" value="metaDescription">
-						<input type="hidden" name="listOption[4].autoload">
-						<input type="text" class="form-control" id="metaDescription" name="listOption[4].optionValue">
-						<div class="form-control-focus"></div>
-						<span class="help-block">填入站点的描述</span>
+				<div class="form-group">
+					<label class="col-md-4 control-label">分页每页显示文章数：</label>
+					<input type="hidden" name="listOption[4].optionId">
+					<input type="hidden" name="listOption[4].optionName" value="numberOfArticlesPerPage">
+					<input type="hidden" name="listOption[4].autoload">
+					<div class="col-md-4">
+						<input type="text" name="listOption[4].optionValue" class="touchSpin">
 					</div>
 				</div>
-				<div class="form-group form-md-line-input has-success">
-					<label class="col-md-2 control-label" for="htmlHead">HTML head:</label>
-					<div class="col-md-10">
-						<input type="hidden" name="listOption[5].optionId">
-						<input type="hidden" name="listOption[5].optionName" value="htmlHead">
-						<input type="hidden" name="listOption[5].autoload">
-						<textarea class="form-control" rows="3" id="htmlHead" name="listOption[5].optionValue"></textarea>
-						<div class="form-control-focus"></div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">分页页码最大宽度：</label>
+					<input type="hidden" name="listOption[5].optionId">
+					<input type="hidden" name="listOption[5].optionName" value="paginationPageNumbersLength">
+					<input type="hidden" name="listOption[5].autoload">
+					<div class="col-md-4">
+						<input type="text" name="listOption[5].optionValue" class="touchSpin">
 					</div>
 				</div>
-				<div class="form-group form-md-line-input has-success">
-					<label class="col-md-2 control-label" for="announcement">公告：</label>
-					<div class="col-md-10">
-						<input type="hidden" name="listOption[6].optionId">
-						<input type="hidden" name="listOption[6].optionName" value="announcement">
-						<input type="hidden" name="listOption[6].autoload">
-						<textarea class="form-control" rows="3" id="announcement" name="listOption[6].optionValue"></textarea>
-						<div class="form-control-focus"></div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">随机阅读显示数目：</label>
+					<input type="hidden" name="listOption[6].optionId">
+					<input type="hidden" name="listOption[6].optionName" value="randomArticleNumbers">
+					<input type="hidden" name="listOption[6].autoload">
+					<div class="col-md-4">
+						<input type="text" name="listOption[6].optionValue" class="touchSpin">
 					</div>
 				</div>
-				<div class="form-group form-md-line-input has-success">
-					<label class="col-md-2 control-label" for="pageFooter">页脚：</label>
-					<div class="col-md-10">
-						<input type="hidden" name="listOption[7].optionId">
-						<input type="hidden" name="listOption[7].optionName" value="pageFooter">
-						<input type="hidden" name="listOption[7].autoload">
-						<textarea class="form-control" rows="3" id="pageFooter" name="listOption[7].optionValue"></textarea>
-						<div class="form-control-focus"></div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">相关阅读显示数目：</label>
+					<input type="hidden" name="listOption[7].optionId">
+					<input type="hidden" name="listOption[7].optionName" value="relatedArticlesNumbers">
+					<input type="hidden" name="listOption[7].autoload">
+					<div class="col-md-4">
+						<input type="text" name="listOption[7].optionValue" class="touchSpin">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">站外相关阅读显示数目：</label>
+					<input type="hidden" name="listOption[8].optionId">
+					<input type="hidden" name="listOption[8].optionName" value="outsideRelatedArticlesNumbers">
+					<input type="hidden" name="listOption[8].autoload">
+					<div class="col-md-4">
+						<input type="text" name="listOption[8].optionValue" class="touchSpin">
 					</div>
 				</div>
 			</div>
-<!-- 			<div class="form-actions">
-				<div class="row">
-					<div class="col-md-offset-2 col-md-10">
-						<button type="button" class="btn default">Cancel</button>
-						<button type="button" class="btn blue">Submit</button>
-					</div>
-				</div>
-			</div> -->
 		</form>
 	</div>
 </div>

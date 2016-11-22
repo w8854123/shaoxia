@@ -60,7 +60,7 @@
 			<input type="hidden" name="listOption[5].optionId">
 			<input type="hidden" name="listOption[5].optionName" value="qiniubucket">
 			<input type="hidden" name="listOption[5].autoload">
-			<input  type="text"  name="listOption[5].optionValue" class="form-control">
+			<input type="text"  name="listOption[5].optionValue" class="form-control">
 		</div>
 	</form>
 </div>

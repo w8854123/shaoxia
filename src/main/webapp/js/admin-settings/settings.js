@@ -26,6 +26,22 @@ var mediaSettings={
 		
 		length:6            //总共6个选项
 }
+/**
+ * 阅读设置
+ */
+var readSettings={
+		articleListDisplay:0, //文章列表显示方式
+		latestCommentsShowsNumber:1,  //最新评论显示数目
+		mostCommentedPostsNumber:2,  //评论最多文章显示数目
+		numberOfArticlesMostRead:3,  //访问最多文章显示数目
+		numberOfArticlesPerPage:4,   //分页每页显示文章数
+		paginationPageNumbersLength:5,  //分页页码最大宽度
+		randomArticleNumbers:6, //随机阅读显示数目
+		relatedArticlesNumbers:7, //相关阅读显示数目
+		outsideRelatedArticlesNumbers:8, //站外相关阅读显示数目
+		
+		length:9   //总共6个选项
+}
 
 /**
  * 批量插入或更新常规设置选项

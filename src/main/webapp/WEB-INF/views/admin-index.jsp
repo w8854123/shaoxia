@@ -544,7 +544,6 @@
                                     <li class="nav-item  ">
                                         <a href="javascript:;" class="nav-link " onclick="loadContentBody('pendingComment',this)">
                                             <span class="title">待审</span>
-                                            <!-- <span class="badge badge-primary">2</span> -->
                                             <span id="sumAudit" class="badge badge-warning">${commentCount.sumAudit }</span>
                                         </a>
                                     </li>
@@ -558,6 +557,25 @@
                                         <a href="javascript:;" class="nav-link " onclick="loadContentBody('spamComment',this)">
                                             <span class="title">垃圾</span>
                                             <span id="sumSpam" class="badge badge-danger">${commentCount.sumSpam }</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-envelope"></i>
+                                    <span class="title">媒体库管理</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link " onclick="">
+                                            <span class="title">管理</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link " onclick="">
+                                            <span class="title">添加</span>
                                         </a>
                                     </li>
                                 </ul>

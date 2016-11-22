@@ -110,7 +110,8 @@ var systemSetMana={
  * 阅读参数设置 初始化组件
  */
 var readSetMana={
-		
+		uiButtons:true,
+		touchSpin:true
 }
 
 /**
@@ -199,6 +200,9 @@ function contentBodyLoad(data,url,initOpt){
 		}
 		if(data=="媒体库设置"){
 			getSett(mediaSettings);
+		}
+		if(data=="阅读设置"){
+			getSett(readSettings);
 		}
 	});
 }
