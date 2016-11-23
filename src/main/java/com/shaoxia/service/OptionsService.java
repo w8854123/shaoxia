@@ -51,7 +51,7 @@ public class OptionsService {
 		//读取缓存中的数据
 		List<Options> result=(List<Options>)cacheManager.getValueByKey(CACHE_KEY_OPTIONS);
 		//缓存未命中
-		if(result==null){
+		if(result==null || result.size()==0){
 			result=optionsMapper.selectAll();
 			//放入缓存
 			cacheManager.putCache(CACHE_KEY_OPTIONS, result);

@@ -55,6 +55,7 @@ var initOption={
 		            verticalbuttons: true
 		        });
 			}
+			
 		}
 }
 
@@ -104,7 +105,7 @@ var mediaSetMana={
  * 系统参数设置 初始化组件
  */
 var systemSetMana={
-		
+		uiButtons:true
 }
 /**
  * 阅读参数设置 初始化组件
@@ -112,6 +113,12 @@ var systemSetMana={
 var readSetMana={
 		uiButtons:true,
 		touchSpin:true
+}
+/**
+ * 上传文件 初始化组件
+ */
+var uploadFileMana={
+		uiButtons:true
 }
 
 /**
@@ -160,6 +167,11 @@ function loadContentBody(menu,obj){
 		data="垃圾评论";
 		commentMana.commentStatus="spam";
 		initOpt=commentMana;
+		break;
+	case "uploadFile":
+		url="/admin/uploadFile.html";
+		data="添加";
+		initOpt=uploadFileMana;
 		break;
 	case "generalSettings":
 		url="/admin/generalSettings.html";
