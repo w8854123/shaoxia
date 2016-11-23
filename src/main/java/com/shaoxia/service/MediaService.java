@@ -1,6 +1,8 @@
 package com.shaoxia.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +26,57 @@ public class MediaService {
 	
 	@Autowired
 	private OptionsService optionsService;
+	
+	/**
+	 * 获取七牛上传upToken
+	 * @return
+	 * @throws Exception 
+	 */
+	public String getUpToken() throws Exception{
+		Map<String,String> qiNiuOptMap=this.getQiNiuOption();
+		if(qiNiuOptMap.isEmpty()){
+			throw new Exception("没有读取到七牛配置文件");
+		}
+		// 设置好账号的ACCESS_KEY和SECRET_KEY
+		String ACCESS_KEY = qiNiuOptMap.get(QINIUACCESSKEY);
+		String SECRET_KEY = qiNiuOptMap.get(QINIUSECRETKEY);
+		// 要上传的空间
+		String bucketname = qiNiuOptMap.get(QINIUBUCKET);
+		// 密钥配置
+		Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
+		return auth.uploadToken(bucketname);
+	}
+	
+	/**
+	 * 获取七牛配置信息
+	 * @return
+	 */
+	public Map<String, String> getQiNiuOption(){
+		Map<String,String> qiNiuOptMap=new HashMap<String,String>();
+		//缓存读取配置文件
+		List<Options> optionList=optionsService.queryAll();
+		if(optionList!=null && optionList.size()>0){
+	    	for(Options opt:optionList){
+	    		if(QINIUACCESSKEY.equals(opt.getOptionName())){
+	    			qiNiuOptMap.put(QINIUACCESSKEY, opt.getOptionValue());
+	    			continue;
+	    		}
+	    		if(QINIUSECRETKEY.equals(opt.getOptionName())){
+	    			qiNiuOptMap.put(QINIUSECRETKEY, opt.getOptionValue());
+	    			continue;
+	    		}
+	    		if(QINIUBUCKET.equals(opt.getOptionName())){
+	    			qiNiuOptMap.put(QINIUBUCKET, opt.getOptionValue());
+	    			continue;
+	    		}
+	    		if(QINIUHOST.equals(opt.getOptionName())){
+	    			qiNiuOptMap.put(QINIUHOST, opt.getOptionValue());
+	    			continue;
+	    		}
+	    	}
+	    }
+		return qiNiuOptMap;
+	}
 	
 	/**
 	 * 上传文件到七牛云

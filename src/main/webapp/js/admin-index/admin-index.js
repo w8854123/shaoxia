@@ -55,7 +55,9 @@ var initOption={
 		            verticalbuttons: true
 		        });
 			}
-			
+			if(initOpt.qiniuUpload){
+				initQiniuUp();
+			}
 		}
 }
 
@@ -118,7 +120,8 @@ var readSetMana={
  * 上传文件 初始化组件
  */
 var uploadFileMana={
-		uiButtons:true
+		uiButtons:true,
+		qiniuUpload:true
 }
 
 /**

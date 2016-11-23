@@ -1243,9 +1243,13 @@
         <script src="/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
         <script src="/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
         <script src="/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
-        <!-- <script src="/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script> -->
+        <script src="/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
         <script src="/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" type="text/javascript"></script>
         <script src="/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+        <script src="/global/plugins/plupload/js/plupload.full.min.js" type="text/javascript"></script>
+        <script src="/global/plugins/plupload/js/i18n/zh_CN.js" type="text/javascript"></script>
+        <script src="/global/plugins/qiniu/dist/qiniu.min.js" type="text/javascript"></script>
+        
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="/global/scripts/app.min.js" type="text/javascript"></script>
@@ -1272,6 +1276,7 @@
         <script src="/js/admin-article/article.js" type="text/javascript"></script>
         <script src="/js/admin-comment/comment.js" type="text/javascript"></script>
         <script src="/js/admin-settings/settings.js" type="text/javascript"></script>
+        <script src="/js/admin-media/media.js" type="text/javascript"></script>
         
     </body>
 </html>

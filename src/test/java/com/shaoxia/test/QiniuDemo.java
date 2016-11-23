@@ -34,7 +34,7 @@ public class QiniuDemo {
 	public String getUpToken() {
 //		return auth.uploadToken(bucketname);
 		return auth.uploadToken(bucketname,null,3600,new StringMap()
-		          .put("callbackUrl","http://ogqppufn8.bkt.clouddn.com/callback")
+		          .put("callbackUrl","http://ogqppufn8.bkt.clouddn.com/")
 		          .put("callbackBody", "filename=$(fname)&filesize=$(fsize)"));
 	}
 

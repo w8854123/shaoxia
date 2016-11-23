@@ -23,10 +23,11 @@
 	<div class="clearfix margin-top-10">
 		<span class="label label-success">提示!</span>请上传小于50MB的文件
 	</div>
-	<div class="clearfix margin-top-10">
-		<button type="button" data-loading-text="正在设置..." onclick="" class="btn green mt-ladda-btn ladda-button Settings" data-style="zoom-in">
+	<div class="clearfix margin-top-10" id="fileInput">
+		<button id="uploadButton" type="button" data-loading-text="正在上传..." class="btn green mt-ladda-btn ladda-button Settings" data-style="zoom-in">
 			<i class="fa fa-save"></i>
 			<span class="ladda-label">上传文件</span>
 		</button>
 	</div>
 </div>
+<input id="qiniuHOST" type="hidden" value="${qiniuHOST }">
