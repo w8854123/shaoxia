@@ -556,7 +556,7 @@ var TableDatatablesManaged = function () {
              		stateHtml +='<span class="label label-sm label-primary" style="cursor:pointer;" onclick="operationComment(\'spam\',0,'+id+')">恢复</span>';
              	}
              	stateHtml += '<span class="label label-sm label-info" style="cursor:pointer;" onclick="operationComment(\'delete\',1,'+id+')">删除</span>';
-             	//设置@谁 样式
+             	//设置“@谁” 样式
              	var replyTo="";
              	if(data.commentType==1){
              		replyTo = '<span class="font-red-haze">@:</span><span class="font-blue-soft">'+data.originalCommentName+'</span><br>';
@@ -570,6 +570,79 @@ var TableDatatablesManaged = function () {
     	
     }
     
+    /**
+     * 媒体库表
+     * @param serverSide 是否服务器模式true,false
+     */
+    var mediaTables=function(serverSide){
+    	table = $('#mediaTables').DataTable({
+    		"language": language,
+            "processing": false, //关闭加载提示
+            "serverSide": serverSide, //关闭服务器模式
+            "bStateSave": false, // save datatable state(pagination, sort, etc) in cookie.
+            "searching": true,//是否允许Datatables开启本地搜索
+            "searchDelay":800,//设置搜索延迟时间单位ms
+            "lengthMenu": [
+                [5, 15, 20, 25],
+                [5, 15, 20, 25] // change per page values here
+            ],
+            // set the initial value
+            "pageLength": 20,
+            "pagingType": "bootstrap_full_number",
+            "columns":[
+                {"data":null},
+                {"data":"id"},
+                {"data":"resourceName"},
+                {"data":"resourceUrl"},
+                {"data":"resourceType"},
+                {"data":"resourceSuffix"},
+                {"data":"storageLocation"},
+                {"data":"cloudServer"},
+                {"data":"qiniuKey"},
+                {"data":"updated"},
+                {"data":"status"}
+            ],
+            "columnDefs": [
+                {  // set default column settings
+                	'orderable': false,
+                    'targets': [0,1,2,3,4,5,6,7,8,10]
+                }, 
+                {
+                    "searchable": false,
+                    "targets": [0,8,10]
+                },
+                {
+                    "render": function(data, type, row , meta) { //参看https://datatables.net/reference/option/columns.render
+                    	var time=new Date(data);
+                        return time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate()+" "+time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+                    },
+                    "targets": [9]
+                },
+                {
+                	"visible": false, //可见性
+                    "targets": [1,8,10]
+                },
+                {
+                    "className": "dt-right", 
+                }
+             ],
+    		"order": [
+    		    [9, "desc"]
+             ],
+             
+             "ajax" : function(data, callback, settings){
+            	
+            	var url="/admin/";
+             	
+             	loadData("blockui_mediaTables",url,serverSide,data,callback);
+             	
+             },
+             "createdRow":function(row, data, dataIndex){
+            	 
+             }
+    	});
+    }
+    
     return {
         init: function (tableType) {
             if (!jQuery().dataTable) {
@@ -577,9 +650,10 @@ var TableDatatablesManaged = function () {
             }
             if(tableType.dataTablesType=="article"){
             	articleTables(tableType.serverSide); //false客户端模式加载
-            	
             }else if(tableType.dataTablesType=="comment"){
             	commentTables(tableType.serverSide,tableType.commentStatus);
+            }else if(tableType.dataTablesType=="media"){
+            	mediaTables(tableType.serverSide);
             }
             linenum();//生成行号
         }

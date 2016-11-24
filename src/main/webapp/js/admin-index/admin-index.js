@@ -76,7 +76,7 @@ var newArti={
 var articleMana={
 		dataTables:true,
 		dataTablesType:"article",
-		serverSide:false, //开启客户端模式  true服务端模式
+		serverSide:false, //dataTable开启客户端模式  true服务端模式
 		uiButtons:true,
 		componentsEditors:true,
 		bootstrapSwitch:true,
@@ -121,7 +121,10 @@ var readSetMana={
  */
 var uploadFileMana={
 		uiButtons:true,
-		qiniuUpload:true
+		qiniuUpload:true,
+		dataTables:true,
+		dataTablesType:"media",
+		serverSide:false
 }
 
 /**

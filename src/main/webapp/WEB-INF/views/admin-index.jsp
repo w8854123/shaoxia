@@ -36,7 +36,7 @@
         <link href="/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
         <link href="/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.css" rel="stylesheet" type="text/css" />
-        <link href="/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" /> -->
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN 全局主题样式 -->
         <link href="/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -1245,7 +1245,7 @@
         <script src="/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
         <script src="/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
         <script src="/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" type="text/javascript"></script>
-        <script src="/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+        <!-- <script src="/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script> -->
         <script src="/global/plugins/plupload/js/plupload.full.min.js" type="text/javascript"></script>
         <script src="/global/plugins/plupload/js/i18n/zh_CN.js" type="text/javascript"></script>
         <script src="/global/plugins/qiniu/dist/qiniu.min.js" type="text/javascript"></script>

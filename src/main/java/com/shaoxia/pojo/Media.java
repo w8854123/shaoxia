@@ -33,6 +33,10 @@ public class Media {
 	
 	private String resourceType;
 	
+	private String qiniuKey;
+	//状态：-1：删除
+	private Integer status;
+	
 	private Date created;
 	
 	private Date updated;
@@ -107,6 +111,22 @@ public class Media {
 
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+	
+	public String getQiniuKey() {
+		return qiniuKey;
+	}
+
+	public void setQiniuKey(String qiniuKey) {
+		this.qiniuKey = qiniuKey;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public Date getUpdated() {
