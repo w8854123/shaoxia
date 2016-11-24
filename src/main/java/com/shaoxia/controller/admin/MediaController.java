@@ -1,7 +1,5 @@
 package com.shaoxia.controller.admin;
 
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +24,19 @@ public class MediaController {
 	
 	/**
 	 * 新增
+	 * @param media 
 	 * @return
 	 */
 	@RequestMapping(value="/add",method=RequestMethod.PUT)
-	public ResponseEntity<Map<String,String>> addMedia(){
-		
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); //500
+	public ResponseEntity<Void> addMedia(Media media){
+		try {
+			mediaService.addMedia(media);
+			return ResponseEntity.ok().build();
+		} catch (Exception e) {
+			LOGGER.info("输入参数： media = {} ",media);
+			LOGGER.error("新增多媒体异常,异常信息:", e);
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); //500
 	}
 	
 	/**

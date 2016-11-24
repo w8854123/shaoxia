@@ -35,25 +35,4 @@
 	        <i class="fa fa-plus"></i>
 	    </a>
 	</div>
-	<div class="portlet-body" id="blockui_mediaTables">
-		<table class="table table-striped table-bordered table-hover table-checkable order-column" id="mediaTables">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>id</th>
-					<th>文件名</th>
-					<th>外链地址</th>
-					<th>文件类型</th>
-					<th>文件后缀</th>
-					<th>存储位置</th>
-					<th>云服务商</th>
-					<th>七牛key</th>
-					<th>上传时间</th>
-					<th>状态</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</div>
 </div>

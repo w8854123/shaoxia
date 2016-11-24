@@ -1,8 +1,10 @@
 package com.shaoxia.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,6 +99,30 @@ public class MediaService {
 		DataTablesResult<Media> dtResult=new DataTablesResult<Media>();
 		dtResult.setData(mediaList);
 		return dtResult;
+	}
+
+	/**
+	 * 新增
+	 * @param media
+	 * @throws Exception 
+	 */
+	public void addMedia(Media media) throws Exception {
+//		if(media==null){
+//			throw new Exception("没有实体");
+//		}
+		media=new Media();
+		
+		media.setCreated(new Date());
+		media.setUpdated(media.getCreated());
+		//判断文件类型
+		media.setQiniuKey("kskakdkf.jpg");
+		media.setResourceName("测试"+Math.random()*10);
+		media.setResourceSuffix("jpg");
+		media.setResourceType("picture");
+		media.setResourceUrl("http://asdfff."+Math.random()*10);
+		media.setCloudServer("qiniu");
+		media.setStorageLocation("cloud");
+		mediaMapper.insertSelective(media);
 	}
 	
 }

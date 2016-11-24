@@ -632,7 +632,7 @@ var TableDatatablesManaged = function () {
              
              "ajax" : function(data, callback, settings){
             	
-            	var url="/admin/";
+            	var url="/admin/media/query";
              	
              	loadData("blockui_mediaTables",url,serverSide,data,callback);
              	

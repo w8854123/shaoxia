@@ -570,7 +570,7 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item  ">
-                                        <a href="javascript:;" class="nav-link " onclick="">
+                                        <a href="javascript:;" class="nav-link " onclick="loadContentBody('mediaManage',this)">
                                             <span class="title">管理</span>
                                         </a>
                                     </li>
@@ -1248,7 +1248,7 @@
         <!-- <script src="/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script> -->
         <script src="/global/plugins/plupload/js/plupload.full.min.js" type="text/javascript"></script>
         <script src="/global/plugins/plupload/js/i18n/zh_CN.js" type="text/javascript"></script>
-        <script src="/global/plugins/qiniu/dist/qiniu.min.js" type="text/javascript"></script>
+        <script src="/global/plugins/qiniu/qiniu.min.js" type="text/javascript"></script>
         
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->

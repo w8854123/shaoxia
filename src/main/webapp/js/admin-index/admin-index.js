@@ -121,11 +121,17 @@ var readSetMana={
  */
 var uploadFileMana={
 		uiButtons:true,
-		qiniuUpload:true,
+		qiniuUpload:true
+}
+/**
+ * 媒体库管理 初始化组件
+ */
+var mediaMana={
 		dataTables:true,
 		dataTablesType:"media",
 		serverSide:false
 }
+
 
 /**
  * 加载contentBody
@@ -173,6 +179,11 @@ function loadContentBody(menu,obj){
 		data="垃圾评论";
 		commentMana.commentStatus="spam";
 		initOpt=commentMana;
+		break;
+	case "mediaManage":
+		url="/admin/mediaManage.html";
+		data="管理";
+		initOpt=mediaMana;
 		break;
 	case "uploadFile":
 		url="/admin/uploadFile.html";
