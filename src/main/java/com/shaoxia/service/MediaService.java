@@ -66,19 +66,19 @@ public class MediaService {
 		if(optionList!=null && optionList.size()>0){
 	    	for(Options opt:optionList){
 	    		if(QINIUACCESSKEY.equals(opt.getOptionName())){
-	    			qiNiuOptMap.put(QINIUACCESSKEY, opt.getOptionValue());
+	    			qiNiuOptMap.put(QINIUACCESSKEY, opt.getOptionValue().trim());
 	    			continue;
 	    		}
 	    		if(QINIUSECRETKEY.equals(opt.getOptionName())){
-	    			qiNiuOptMap.put(QINIUSECRETKEY, opt.getOptionValue());
+	    			qiNiuOptMap.put(QINIUSECRETKEY, opt.getOptionValue().trim());
 	    			continue;
 	    		}
 	    		if(QINIUBUCKET.equals(opt.getOptionName())){
-	    			qiNiuOptMap.put(QINIUBUCKET, opt.getOptionValue());
+	    			qiNiuOptMap.put(QINIUBUCKET, opt.getOptionValue().trim());
 	    			continue;
 	    		}
 	    		if(QINIUHOST.equals(opt.getOptionName())){
-	    			qiNiuOptMap.put(QINIUHOST, opt.getOptionValue());
+	    			qiNiuOptMap.put(QINIUHOST, opt.getOptionValue().trim());
 	    			continue;
 	    		}
 	    	}
