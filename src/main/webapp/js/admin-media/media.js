@@ -58,11 +58,27 @@ var initQiniuUp=function(){
 				//    "key": "gogopher.jpg"
 				//  }
 				// 查看简单反馈
+                toastr["success"]("上传到七牛云成功！", "温馨提示");
 				var domain = up.getOption('domain');
 				var res = JSON.parse(info);
 				var sourceLink = domain + res.key; //获取上传成功后的文件的Url
-				console.info(sourceLink);
-				
+
+				var url="/admin/media/add";
+				var type="PUT";
+				var resourceName=file.name.split(".")[0];
+				var resourceSuffix=file.name.split(".")[1];
+				$.ajax({
+                    url:url,
+                    type:type,
+                    data:{"resourceUrl":sourceLink,"resourceName":resourceName,"resourceSuffix":resourceSuffix,"storageLocation":"cloud","cloudServer":"qiniu","qiniuKey":res.key},
+                    dataType:"text",
+                    success:function(src,textStatus) {
+                        toastr["success"]("保存到媒体库成功！", "温馨提示");
+                    },
+                    error:function(XMLHttpRequest){
+                        toastr["error"]("保存到媒体库失败!", XMLHttpRequest.status);
+                    }
+				});
 			},
 			'Error': function(up, err, errTip) {
 				//上传出错时，处理相关的事情

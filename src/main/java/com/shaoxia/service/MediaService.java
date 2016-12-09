@@ -29,7 +29,16 @@ public class MediaService {
 	public static final String QINIUSECRETKEY="qiniuSecretKey";
 	public static final String QINIUHOST="qiniuHOST";
 	public static final String QINIUBUCKET="qiniubucket";
-	
+
+	//文件类型后缀
+	public static final String[] PICTURESUFFIX={"jpg","png","gif","bmp","jpeg"};
+	public static final String[] VIDEOSUFFIX={"mp4","mkv","rmvb","rm","avi","wmv","3gp","mov","flv"};
+	public static final String[] AUDIOSUFFIX={"mp3","flac","ape","wav","aac"};
+
+	//状态
+	private static final int NORMAL=0;  //正常
+	private static final int DELETE=-1;  //删除
+
 	@Autowired
 	private MediaMapper mediaMapper;
 	@Autowired
@@ -107,22 +116,39 @@ public class MediaService {
 	 * @throws Exception 
 	 */
 	public void addMedia(Media media) throws Exception {
-//		if(media==null){
-//			throw new Exception("没有实体");
-//		}
-		media=new Media();
+		if(media==null){
+			throw new Exception("没有实体");
+		}
 		
 		media.setCreated(new Date());
 		media.setUpdated(media.getCreated());
+		media.setStatus(NORMAL);
 		//判断文件类型
-		media.setQiniuKey("kskakdkf.jpg");
-		media.setResourceName("测试"+Math.random()*10);
-		media.setResourceSuffix("jpg");
-		media.setResourceType("picture");
-		media.setResourceUrl("http://asdfff."+Math.random()*10);
-		media.setCloudServer("qiniu");
-		media.setStorageLocation("cloud");
+		media.setResourceType(checkFileType(media.getResourceSuffix()));
+
 		mediaMapper.insertSelective(media);
 	}
-	
+
+	/**
+	 * 根据文件后缀判断文件类型
+	 * @return
+	 */
+	public String checkFileType(String suffix){
+		for(int i=0;i<PICTURESUFFIX.length;i++){
+			if(PICTURESUFFIX[i].equals(suffix.toLowerCase())){
+				return "picture";
+			}
+		}
+		for(int i=0;i<VIDEOSUFFIX.length;i++){
+			if(VIDEOSUFFIX[i].equals(suffix.toLowerCase())){
+				return "video";
+			}
+		}
+		for(int i=0;i<AUDIOSUFFIX.length;i++){
+			if(AUDIOSUFFIX[i].equals(suffix.toLowerCase())){
+				return "audio";
+			}
+		}
+		return "other";
+	}
 }
