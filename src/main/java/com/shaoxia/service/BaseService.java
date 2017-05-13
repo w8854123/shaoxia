@@ -180,8 +180,7 @@ public abstract class BaseService<T> {
     
     /**
      * 自定义条件查询
-     * @param page
-     * @param rows
+     * @param example
      * @return
      */
     public List<T> queryListByExample(Example example){
