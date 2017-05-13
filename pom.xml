@@ -5,7 +5,9 @@
 	<artifactId>shaoxia</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-
+	<properties>
+		<spirng.version>4.3.3.RELEASE</spirng.version>
+	</properties>
 	<dependencies>
 
 		<!-- 单元测试 -->
@@ -27,22 +29,22 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>${spirng.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>${spirng.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>${spirng.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>${spirng.version}</version>
 		</dependency>
 
 		<!-- Mybatis -->
